@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Highthere AI – Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://js.puter.com/v2/"></script>
+  <style>
+    body { font-family: "Inter", system-ui, sans-serif; }
+    pre { white-space: pre-wrap; word-break: break-word; }
+  </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors">
+
+<header class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
+  <h1 class="text-xl font-bold">Highthere AI</h1>
+  <button id="themeBtn" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+    <svg id="sun" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+    <svg id="moon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+  </button>
+</header>
+
+<main class="p-4 max-w-2xl mx-auto space-y-4">
+  <!-- Inputs -->
+  <textarea id="prompt" rows="4" placeholder="Main prompt…" class="w-full p-2 border rounded-md bg-transparent"></textarea>
+  <input id="keyword" placeholder="Main keyword" class="w-full p-2 border rounded-md bg-transparent" />
+  <textarea id="related" rows="2" placeholder="Related keywords (comma)" class="w-full p-2 border rounded-md bg-transparent"></textarea>
+  <textarea id="longTail" rows="2" placeholder="Long-tail keywords (comma)" class="w-full p-2 border rounded-md bg-transparent"></textarea>
+  <select id="wordCount" class="w-full p-2 border rounded-md bg-transparent">
+    <option>800-1200 words</option>
+    <option>1200-1800 words</option>
+    <option>1800-2500 words</option>
+    <option>2500+ words</option>
+  </select>
+  <div class="flex gap-2">
+    <select id="tone" class="w-full p-2 border rounded-md bg-transparent">
+      <option>Conversational & Friendly</option>
+      <option>Educational & Informative</option>
+      <option>Expert & Authoritative</option>
+      <option>Playful & Humorous</option>
+      <option>Relaxed & Chill</option>
+    </select>
+    <button id="recBtn" class="px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded-md text-sm">✨</button>
+  </div>
+
+  <button id="genBtn" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md disabled:opacity-50">
+    Generate Article
+  </button>
+
+  <!-- Output -->
+  <div id="result" class="hidden">
+    <h2 class="font-semibold text-lg mb-2">Generated Article</h2>
+    <pre id="article" class="p-2 border rounded-md bg-gray-100 dark:bg-gray-800 overflow-auto max-h-96"></pre>
+    <button id="htmlBtn" class="mt-2 w-full bg-teal-600 text-white py-2 rounded-md">Convert to HTML</button>
+    <textarea id="htmlOut" class="hidden w-full h-48 mt-2 p-2 border rounded-md bg-gray-900 text-green-300 font-mono text-sm" readonly></textarea>
+    <button id="copyBtn" class="hidden mt-2 w-full bg-indigo-600 text-white py-2 rounded-md">Copy HTML</button>
+  </div>
+
+  <div id="loading" class="hidden flex items-center justify-center space-x-2">
+    <svg class="animate-spin h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+    <span id="msg"></span>
+  </div>
+</main>
+
+<script>
+/* ---------- theme ---------- */
+const body = document.documentElement;
+const sun = document.getElementById('sun');
+const moon = document.getElementById('moon');
+const themeBtn = document.getElementById('themeBtn');
+
+function setTheme(dark){
+  body.classList.toggle('dark', dark);
+  sun.classList.toggle('hidden', !dark);
+  moon.classList.toggle('hidden', dark);
+  localStorage.setItem('theme', dark ? 'dark' : 'light');
+}
+const saved = localStorage.getItem('theme');
+setTheme(saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
+themeBtn.addEventListener('click', () => setTheme(!body.classList.contains('dark')));
+
+/* ---------- helpers ---------- */
+const $ = id => document.getElementById(id);
+function show(el, on=true){ el.classList.toggle('hidden', !on); }
+function loading(msg){
+  $('loading').querySelector('#msg').textContent = msg;
+  show($('loading'), true);
+  show($('result'), false);
+}
+function done(){ show($('loading'), false); }
+
+/* ---------- prompts ---------- */
+const build = (prompt, kw, rel, lt, wc, tone) =>
+`You are an Expert SEO Content Strategist for Highthere.me DC cannabis blog.
+Main prompt: ${prompt}
+Main keyword: ${kw}
+Related: ${rel}
+Long-tail: ${lt}
+Word count: ${wc}
+Tone: ${tone}
+
+Rules:
+- Use main keyword in H1, long-tails in H2/H3
+- Paragraphs 60-70 words, Flesch >60, passive ≤10%
+- Include FAQ & CTA “buy products at Highthere”
+Output final markdown only.`;
+
+/* ---------- core ---------- */
+async function askGemini(prompt){
+  const stream = await puter.ai.chat(prompt, { model:'google/gemini-2.5-pro-exp-03-25:free', stream:true });
+  let out = '';
+  for await (const chunk of stream) out += (chunk.text||'');
+  return out;
+}
+
+/* ---------- events ---------- */
+$('recBtn').addEventListener('click', async () => {
+  const kw = $('keyword').value.trim();
+  if(!kw) return alert('Enter main keyword');
+  loading('Recommending tones…');
+  const res = await askGemini(`Suggest 5 tone options + 1-sentence justification for keyword "${kw}". Markdown list.`);
+  alert(res); done();
+});
+
+$('genBtn').addEventListener('click', async () => {
+  const [p,k,r,l,w,t] = ['prompt','keyword','related','longTail','wordCount','tone'].map(id=>$(id).value.trim());
+  if(!p || !k) return alert('Prompt & keyword required');
+  loading('Generating…');
+  const article = await askGemini(build(p,k,r,l,w,t));
+  $('article').textContent = article;
+  show($('result'), true);
+  done();
+});
+
+$('htmlBtn').addEventListener('click', async () => {
+  const article = $('article').textContent;
+  loading('Converting…');
+  const html = await askGemini(`Convert the following markdown to clean WordPress HTML (H1-H3, p, ul/li, CTA link https://highthere.me/shop). Output raw HTML only.\n\n${article}`);
+  $('htmlOut').value = html;
+  show($('htmlOut'), true);
+  show($('copyBtn'), true);
+  done();
+});
+
+$('copyBtn').addEventListener('click', () => {
+  navigator.clipboard.writeText($('htmlOut').value);
+  alert('HTML copied!');
+});
+</script>
+</body>
+</html>
