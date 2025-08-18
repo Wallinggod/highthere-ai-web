@@ -2,150 +2,207 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Highthere AI – Generator</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+  <title>Highthere AI • Kimi K2</title>
+  <meta name="description" content="Generate SEO cannabis articles with Kimi K2 (free)">
+  <link rel="manifest" href="data:application/manifest+json,{}" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://js.puter.com/v2/"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
+    :root {
+      --clr-leaf: #22c55e;
+      --clr-leaf-dark: #16a34a;
+    }
     body { font-family: "Inter", system-ui, sans-serif; }
-    pre { white-space: pre-wrap; word-break: break-word; }
+    .glass { @apply bg-white/40 dark:bg-slate-800/40 backdrop-blur-md border border-white/20 dark:border-slate-700/30 rounded-2xl; }
+    #toggleTheme .icon { transition: transform .4s; }
+    #news li { animation: fadeIn .6s ease-out forwards; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
   </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors">
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors">
 
-<header class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
-  <h1 class="text-xl font-bold">Highthere AI</h1>
-  <button id="themeBtn" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
-    <svg id="sun" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-    <svg id="moon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+<!-- === HEADER === -->
+<header class="flex items-center justify-between p-4 glass shadow-lg sticky top-0 z-30">
+  <h1 class="text-xl font-bold flex items-center gap-2">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2322c55e' width='24' height='24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E" alt="leaf" />
+    Highthere AI
+  </h1>
+  <button id="toggleTheme" aria-label="Toggle theme" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700">
+    <i data-lucide="sun" class="icon text-yellow-400 dark:hidden"></i>
+    <i data-lucide="moon" class="icon text-indigo-400 hidden dark:block"></i>
   </button>
 </header>
 
-<main class="p-4 max-w-2xl mx-auto space-y-4">
-  <!-- Inputs -->
-  <textarea id="prompt" rows="4" placeholder="Main prompt…" class="w-full p-2 border rounded-md bg-transparent"></textarea>
-  <input id="keyword" placeholder="Main keyword" class="w-full p-2 border rounded-md bg-transparent" />
-  <textarea id="related" rows="2" placeholder="Related keywords (comma)" class="w-full p-2 border rounded-md bg-transparent"></textarea>
-  <textarea id="longTail" rows="2" placeholder="Long-tail keywords (comma)" class="w-full p-2 border rounded-md bg-transparent"></textarea>
-  <select id="wordCount" class="w-full p-2 border rounded-md bg-transparent">
-    <option>800-1200 words</option>
-    <option>1200-1800 words</option>
-    <option>1800-2500 words</option>
-    <option>2500+ words</option>
-  </select>
-  <div class="flex gap-2">
-    <select id="tone" class="w-full p-2 border rounded-md bg-transparent">
-      <option>Conversational & Friendly</option>
-      <option>Educational & Informative</option>
-      <option>Expert & Authoritative</option>
-      <option>Playful & Humorous</option>
-      <option>Relaxed & Chill</option>
+<!-- === NEWS BAR === -->
+<section id="news" class="p-4">
+  <h2 class="text-sm font-semibold mb-2 flex items-center gap-1">
+    <i data-lucide="newspaper" class="text-sky-500"></i> Latest Cannabis News
+  </h2>
+  <ul id="newsList" class="space-y-2 text-xs"></ul>
+</section>
+
+<!-- === MAIN CARD === -->
+<main class="p-4 space-y-4">
+  <form class="glass p-4 space-y-3">
+    <textarea id="prompt" rows="3" placeholder="Article prompt…" class="w-full bg-transparent focus:outline-none" required></textarea>
+    <input id="keyword" placeholder="Main keyword" class="w-full bg-transparent focus:outline-none" required />
+    <textarea id="rel" rows="2" placeholder="Related keywords (comma)" class="w-full bg-transparent focus:outline-none"></textarea>
+    <textarea id="long" rows="2" placeholder="Long-tail keywords (comma)" class="w-full bg-transparent focus:outline-none"></textarea>
+    <select id="count" class="w-full bg-transparent focus:outline-none">
+      <option>800-1200 words</option>
+      <option>1200-1800 words</option>
+      <option>1800-2500 words</option>
+      <option>2500+ words</option>
     </select>
-    <button id="recBtn" class="px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded-md text-sm">✨</button>
-  </div>
+    <div class="flex gap-2 items-center">
+      <select id="tone" class="w-full bg-transparent focus:outline-none">
+        <option>Conversational & Friendly</option>
+        <option>Educational & Informative</option>
+        <option>Expert & Authoritative</option>
+        <option>Playful & Humorous</option>
+        <option>Relaxed & Chill</option>
+      </select>
+      <button id="recTone" type="button" class="p-2 glass text-sm" title="Recommend tone"><i data-lucide="zap"></i></button>
+    </div>
+    <button id="genBtn" type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold py-2 rounded-xl shadow hover:shadow-lg transition">
+      Generate with Kimi K2
+    </button>
+  </form>
 
-  <button id="genBtn" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md disabled:opacity-50">
-    Generate Article
-  </button>
+  <!-- === OUTPUT === -->
+  <section id="output" class="hidden glass p-4 space-y-3">
+    <h2 class="font-semibold text-lg flex items-center gap-2"><i data-lucide="file-text"></i> Article</h2>
+    <pre id="article" class="whitespace-pre-wrap text-sm overflow-auto max-h-96"></pre>
+    <button id="toHtmlBtn" class="w-full bg-sky-500 text-white py-2 rounded-xl">Convert to WordPress HTML</button>
+    <textarea id="htmlOut" class="hidden w-full h-48 bg-slate-900 text-green-300 font-mono rounded-xl p-2" readonly></textarea>
+    <button id="copyBtn" class="hidden w-full bg-indigo-500 text-white py-2 rounded-xl">Copy HTML</button>
+  </section>
 
-  <!-- Output -->
-  <div id="result" class="hidden">
-    <h2 class="font-semibold text-lg mb-2">Generated Article</h2>
-    <pre id="article" class="p-2 border rounded-md bg-gray-100 dark:bg-gray-800 overflow-auto max-h-96"></pre>
-    <button id="htmlBtn" class="mt-2 w-full bg-teal-600 text-white py-2 rounded-md">Convert to HTML</button>
-    <textarea id="htmlOut" class="hidden w-full h-48 mt-2 p-2 border rounded-md bg-gray-900 text-green-300 font-mono text-sm" readonly></textarea>
-    <button id="copyBtn" class="hidden mt-2 w-full bg-indigo-600 text-white py-2 rounded-md">Copy HTML</button>
-  </div>
-
-  <div id="loading" class="hidden flex items-center justify-center space-x-2">
-    <svg class="animate-spin h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
-    <span id="msg"></span>
+  <!-- === LOADER === -->
+  <div id="loader" class="hidden flex justify-center items-center gap-2">
+    <i data-lucide="loader" class="animate-spin text-green-500"></i>
+    <span id="loaderMsg"></span>
   </div>
 </main>
 
 <script>
-/* ---------- theme ---------- */
+/* ---------- THEME ---------- */
+const toggle = document.getElementById('toggleTheme');
 const body = document.documentElement;
-const sun = document.getElementById('sun');
-const moon = document.getElementById('moon');
-const themeBtn = document.getElementById('themeBtn');
-
-function setTheme(dark){
+function applyTheme(dark){
   body.classList.toggle('dark', dark);
-  sun.classList.toggle('hidden', !dark);
-  moon.classList.toggle('hidden', dark);
   localStorage.setItem('theme', dark ? 'dark' : 'light');
 }
 const saved = localStorage.getItem('theme');
-setTheme(saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
-themeBtn.addEventListener('click', () => setTheme(!body.classList.contains('dark')));
+applyTheme(saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
+toggle.addEventListener('click', () => applyTheme(!body.classList.contains('dark')));
 
-/* ---------- helpers ---------- */
-const $ = id => document.getElementById(id);
-function show(el, on=true){ el.classList.toggle('hidden', !on); }
-function loading(msg){
-  $('loading').querySelector('#msg').textContent = msg;
-  show($('loading'), true);
-  show($('result'), false);
+/* ---------- ICONS ---------- */
+lucide.createIcons();
+
+/* ---------- NEWS ---------- */
+(async () => {
+  const list = document.getElementById('newsList');
+  try {
+    // Simple RSS → JSON proxy (no key, 20 req/day)
+    const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.leafly.com%2Fnews%2Frss.xml&count=4');
+    const data = await res.json();
+    data.items.forEach(item => {
+      const li = document.createElement('li');
+      li.innerHTML = `<a href="${item.link}" target="_blank" class="text-sky-600 dark:text-sky-400">${item.title}</a>`;
+      list.appendChild(li);
+    });
+  } catch { /* silent fail */ }
+})();
+
+/* ---------- KIMI K2 ---------- */
+const ENDPOINT = 'https://openrouter.ai/api/v1/chat/completions';
+const MODEL = 'moonshotai/kimi-k2:free';
+
+async function askKimi(prompt){
+  const ctrl = new AbortController();
+  const timer = setTimeout(()=>ctrl.abort(), 30000); // 30 s timeout
+  const res = await fetch(ENDPOINT, {
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+      'HTTP-Referer': location.href,
+      'X-Title':'Highthere AI'
+    },
+    body:JSON.stringify({model:MODEL, messages:[{role:'user',content:prompt}]}),
+    signal:ctrl.signal
+  });
+  clearTimeout(timer);
+  if(!res.ok) throw new Error('Kimi error '+res.status);
+  const json = await res.json();
+  return json.choices[0]?.message?.content || '';
 }
-function done(){ show($('loading'), false); }
 
-/* ---------- prompts ---------- */
-const build = (prompt, kw, rel, lt, wc, tone) =>
-`You are an Expert SEO Content Strategist for Highthere.me DC cannabis blog.
-Main prompt: ${prompt}
-Main keyword: ${kw}
-Related: ${rel}
-Long-tail: ${lt}
-Word count: ${wc}
-Tone: ${tone}
+/* ---------- HELPERS ---------- */
+const $ = id => document.getElementById(id);
+function show(el, on=true){ el.classList.toggle('hidden',!on); }
+function loading(msg){
+  show($('loader'),true); $('loaderMsg').textContent = msg;
+  show($('output'),false);
+}
+function done(){ show($('loader'),false); }
 
-Rules:
-- Use main keyword in H1, long-tails in H2/H3
-- Paragraphs 60-70 words, Flesch >60, passive ≤10%
+/* ---------- PROMPT BUILDERS ---------- */
+const buildPrompt = (p,k,r,l,w,t) =>
+`You are an expert SEO cannabis writer for Highthere.me (DC dispensary).
+Main prompt: ${p}
+Main keyword: ${k}
+Related keywords: ${r}
+Long-tail keywords: ${l}
+Word count: ${w}
+Tone: ${t}
+
+Guidelines:
+- One H1 containing main keyword
+- Long-tails used as H2/H3
+- Paragraphs 60-70 words, Flesch Reading Ease >60, passive voice ≤10%, transition words ~30%
 - Include FAQ & CTA “buy products at Highthere”
 Output final markdown only.`;
 
-/* ---------- core ---------- */
-async function askGemini(prompt){
-  const stream = await puter.ai.chat(prompt, { model:'google/gemini-2.5-pro-exp-03-25:free', stream:true });
-  let out = '';
-  for await (const chunk of stream) out += (chunk.text||'');
-  return out;
-}
+const buildHtmlPrompt = article =>
+`Convert the following markdown to clean WordPress HTML (H1-H3, p, ul/li). Add <a href="https://highthere.me/shop">buy products at Highthere</a> in the conclusion. Output raw HTML only.\n\n${article}`;
 
-/* ---------- events ---------- */
-$('recBtn').addEventListener('click', async () => {
-  const kw = $('keyword').value.trim();
-  if(!kw) return alert('Enter main keyword');
-  loading('Recommending tones…');
-  const res = await askGemini(`Suggest 5 tone options + 1-sentence justification for keyword "${kw}". Markdown list.`);
+/* ---------- EVENTS ---------- */
+$('recTone').addEventListener('click', async () => {
+  const k = $('keyword').value.trim();
+  if(!k) return alert('Enter main keyword');
+  loading('Suggesting tones…');
+  const res = await askKimi(`Suggest 5 tone options with 1-sentence justification for keyword "${k}". Markdown list.`);
   alert(res); done();
 });
 
-$('genBtn').addEventListener('click', async () => {
-  const [p,k,r,l,w,t] = ['prompt','keyword','related','longTail','wordCount','tone'].map(id=>$(id).value.trim());
-  if(!p || !k) return alert('Prompt & keyword required');
-  loading('Generating…');
-  const article = await askGemini(build(p,k,r,l,w,t));
-  $('article').textContent = article;
-  show($('result'), true);
-  done();
+$('genBtn').parentElement.addEventListener('submit', async e=>{
+  e.preventDefault();
+  const [p,k,r,l,w,t] = ['prompt','keyword','rel','long','count','tone'].map($);
+  if(!p.value || !k.value) return alert('Prompt & keyword required');
+  loading('Generating article…');
+  try {
+    const article = await askKimi(buildPrompt(p.value,k.value,r.value,l.value,w.value,t.value));
+    $('article').textContent = article;
+    show($('output'),true);
+  } catch(err){
+    alert(err.message || 'Generation failed');
+  } finally { done(); }
 });
 
-$('htmlBtn').addEventListener('click', async () => {
+$('toHtmlBtn').addEventListener('click', async () => {
   const article = $('article').textContent;
   loading('Converting…');
-  const html = await askGemini(`Convert the following markdown to clean WordPress HTML (H1-H3, p, ul/li, CTA link https://highthere.me/shop). Output raw HTML only.\n\n${article}`);
+  const html = await askKimi(buildHtmlPrompt(article));
   $('htmlOut').value = html;
-  show($('htmlOut'), true);
-  show($('copyBtn'), true);
+  show($('htmlOut'),true); show($('copyBtn'),true);
   done();
 });
 
 $('copyBtn').addEventListener('click', () => {
   navigator.clipboard.writeText($('htmlOut').value);
-  alert('HTML copied!');
+  alert('HTML copied to clipboard!');
 });
 </script>
 </body>
