@@ -4,82 +4,83 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
   <title>Highthere AI • Kimi K2</title>
-  <meta name="description" content="Generate SEO cannabis articles with Kimi K2 (free)">
-  <link rel="manifest" href="data:application/manifest+json,{}" />
+  <meta name="description" content="Generate SEO cannabis articles with Kimi K2" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    :root {
-      --clr-leaf: #22c55e;
-      --clr-leaf-dark: #16a34a;
-    }
+    :root { --leaf: #22c55e; }
     body { font-family: "Inter", system-ui, sans-serif; }
-    .glass { @apply bg-white/40 dark:bg-slate-800/40 backdrop-blur-md border border-white/20 dark:border-slate-700/30 rounded-2xl; }
-    #toggleTheme .icon { transition: transform .4s; }
-    #news li { animation: fadeIn .6s ease-out forwards; }
-    @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+    .glass { @apply bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-slate-300 dark:border-slate-600 rounded-2xl; }
+    input, textarea, select { @apply border border-slate-400 dark:border-slate-600 rounded-md bg-transparent w-full p-2 focus:outline-none focus:ring-2 focus:ring-green-500; }
+    .loader { animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors">
 
-<!-- === HEADER === -->
+<!-- HEADER -->
 <header class="flex items-center justify-between p-4 glass shadow-lg sticky top-0 z-30">
   <h1 class="text-xl font-bold flex items-center gap-2">
     <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2322c55e' width='24' height='24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E" alt="leaf" />
     Highthere AI
   </h1>
   <button id="toggleTheme" aria-label="Toggle theme" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700">
-    <i data-lucide="sun" class="icon text-yellow-400 dark:hidden"></i>
-    <i data-lucide="moon" class="icon text-indigo-400 hidden dark:block"></i>
+    <i data-lucide="sun" class="text-yellow-400 dark:hidden"></i>
+    <i data-lucide="moon" class="text-indigo-400 hidden dark:block"></i>
   </button>
 </header>
 
-<!-- === NEWS BAR === -->
-<section id="news" class="p-4">
-  <h2 class="text-sm font-semibold mb-2 flex items-center gap-1">
-    <i data-lucide="newspaper" class="text-sky-500"></i> Latest Cannabis News
-  </h2>
-  <ul id="newsList" class="space-y-2 text-xs"></ul>
+<!-- API KEY -->
+<section class="p-4">
+  <label class="block text-sm font-medium mb-1">OpenRouter Key (Kimi K2)</label>
+  <div class="flex gap-2">
+    <input id="apiKey" type="password" placeholder="sk-or-xxxxxxxxxxxxxxxx" class="flex-1" />
+    <button id="saveKey" class="px-3 py-1 bg-green-600 text-white rounded-md text-sm">Save</button>
+  </div>
 </section>
 
-<!-- === MAIN CARD === -->
+<!-- NEWS -->
+<section id="news" class="p-4">
+  <h2 class="text-sm font-semibold mb-2 flex items-center gap-1"><i data-lucide="newspaper" class="text-sky-500"></i> Latest Cannabis News</h2>
+  <ul id="newsList" class="space-y-1 text-xs"></ul>
+</section>
+
+<!-- MAIN FORM -->
 <main class="p-4 space-y-4">
   <form class="glass p-4 space-y-3">
-    <textarea id="prompt" rows="3" placeholder="Article prompt…" class="w-full bg-transparent focus:outline-none" required></textarea>
-    <input id="keyword" placeholder="Main keyword" class="w-full bg-transparent focus:outline-none" required />
-    <textarea id="rel" rows="2" placeholder="Related keywords (comma)" class="w-full bg-transparent focus:outline-none"></textarea>
-    <textarea id="long" rows="2" placeholder="Long-tail keywords (comma)" class="w-full bg-transparent focus:outline-none"></textarea>
-    <select id="count" class="w-full bg-transparent focus:outline-none">
+    <textarea id="prompt" rows="3" placeholder="Article prompt…" required></textarea>
+    <input id="keyword" placeholder="Main keyword" required />
+    <textarea id="rel" rows="2" placeholder="Related keywords (comma)"></textarea>
+    <textarea id="long" rows="2" placeholder="Long-tail keywords (comma)"></textarea>
+    <select id="count">
       <option>800-1200 words</option>
       <option>1200-1800 words</option>
       <option>1800-2500 words</option>
       <option>2500+ words</option>
     </select>
     <div class="flex gap-2 items-center">
-      <select id="tone" class="w-full bg-transparent focus:outline-none">
+      <select id="tone" class="flex-1">
         <option>Conversational & Friendly</option>
         <option>Educational & Informative</option>
         <option>Expert & Authoritative</option>
         <option>Playful & Humorous</option>
         <option>Relaxed & Chill</option>
       </select>
-      <button id="recTone" type="button" class="p-2 glass text-sm" title="Recommend tone"><i data-lucide="zap"></i></button>
+      <button id="recTone" type="button" title="Recommend tone" class="p-2 glass"><i data-lucide="zap"></i></button>
     </div>
-    <button id="genBtn" type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold py-2 rounded-xl shadow hover:shadow-lg transition">
-      Generate with Kimi K2
-    </button>
+    <button id="genBtn" type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold py-2 rounded-xl shadow">Generate with Kimi K2</button>
   </form>
 
-  <!-- === OUTPUT === -->
+  <!-- OUTPUT -->
   <section id="output" class="hidden glass p-4 space-y-3">
     <h2 class="font-semibold text-lg flex items-center gap-2"><i data-lucide="file-text"></i> Article</h2>
-    <pre id="article" class="whitespace-pre-wrap text-sm overflow-auto max-h-96"></pre>
+    <pre id="article" class="text-sm whitespace-pre-wrap overflow-auto max-h-96"></pre>
     <button id="toHtmlBtn" class="w-full bg-sky-500 text-white py-2 rounded-xl">Convert to WordPress HTML</button>
     <textarea id="htmlOut" class="hidden w-full h-48 bg-slate-900 text-green-300 font-mono rounded-xl p-2" readonly></textarea>
     <button id="copyBtn" class="hidden w-full bg-indigo-500 text-white py-2 rounded-xl">Copy HTML</button>
   </section>
 
-  <!-- === LOADER === -->
+  <!-- LOADER -->
   <div id="loader" class="hidden flex justify-center items-center gap-2">
     <i data-lucide="loader" class="animate-spin text-green-500"></i>
     <span id="loaderMsg"></span>
@@ -88,15 +89,23 @@
 
 <script>
 /* ---------- THEME ---------- */
-const toggle = document.getElementById('toggleTheme');
+const toggleBtn = document.getElementById('toggleTheme');
 const body = document.documentElement;
-function applyTheme(dark){
+function setTheme(dark){
   body.classList.toggle('dark', dark);
   localStorage.setItem('theme', dark ? 'dark' : 'light');
 }
-const saved = localStorage.getItem('theme');
-applyTheme(saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
-toggle.addEventListener('click', () => applyTheme(!body.classList.contains('dark')));
+const savedTheme = localStorage.getItem('theme');
+setTheme(savedTheme ? savedTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
+toggleBtn.addEventListener('click', () => setTheme(!body.classList.contains('dark')));
+
+/* ---------- API KEY ---------- */
+const apiKeyInput = document.getElementById('apiKey');
+const saveBtn = document.getElementById('saveKey');
+function getKey(){ return localStorage.getItem('kimiKey') || ''; }
+function saveKey(){ localStorage.setItem('kimiKey', apiKeyInput.value.trim()); alert('Saved'); }
+apiKeyInput.value = getKey();
+saveBtn.addEventListener('click', saveKey);
 
 /* ---------- ICONS ---------- */
 lucide.createIcons();
@@ -105,15 +114,14 @@ lucide.createIcons();
 (async () => {
   const list = document.getElementById('newsList');
   try {
-    // Simple RSS → JSON proxy (no key, 20 req/day)
     const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.leafly.com%2Fnews%2Frss.xml&count=4');
     const data = await res.json();
-    data.items.forEach(item => {
+    data.items.forEach(item=>{
       const li = document.createElement('li');
       li.innerHTML = `<a href="${item.link}" target="_blank" class="text-sky-600 dark:text-sky-400">${item.title}</a>`;
       list.appendChild(li);
     });
-  } catch { /* silent fail */ }
+  } catch {/* silent */}
 })();
 
 /* ---------- KIMI K2 ---------- */
@@ -121,20 +129,23 @@ const ENDPOINT = 'https://openrouter.ai/api/v1/chat/completions';
 const MODEL = 'moonshotai/kimi-k2:free';
 
 async function askKimi(prompt){
+  const key = getKey();
+  if(!key) throw new Error('Please add your OpenRouter key above.');
   const ctrl = new AbortController();
-  const timer = setTimeout(()=>ctrl.abort(), 30000); // 30 s timeout
+  const timer = setTimeout(()=>ctrl.abort(), 30000);
   const res = await fetch(ENDPOINT, {
     method:'POST',
     headers:{
       'Content-Type':'application/json',
+      'Authorization': `Bearer ${key}`,
       'HTTP-Referer': location.href,
       'X-Title':'Highthere AI'
     },
-    body:JSON.stringify({model:MODEL, messages:[{role:'user',content:prompt}]}),
+    body:JSON.stringify({model:MODEL, messages:[{role:'user', content:prompt}]}),
     signal:ctrl.signal
   });
   clearTimeout(timer);
-  if(!res.ok) throw new Error('Kimi error '+res.status);
+  if(!res.ok) throw new Error(`Kimi error ${res.status}`);
   const json = await res.json();
   return json.choices[0]?.message?.content || '';
 }
@@ -150,7 +161,7 @@ function done(){ show($('loader'),false); }
 
 /* ---------- PROMPT BUILDERS ---------- */
 const buildPrompt = (p,k,r,l,w,t) =>
-`You are an expert SEO cannabis writer for Highthere.me (DC dispensary).
+`You are an expert SEO cannabis writer for Highthere.me DC dispensary.
 Main prompt: ${p}
 Main keyword: ${k}
 Related keywords: ${r}
@@ -161,7 +172,7 @@ Tone: ${t}
 Guidelines:
 - One H1 containing main keyword
 - Long-tails used as H2/H3
-- Paragraphs 60-70 words, Flesch Reading Ease >60, passive voice ≤10%, transition words ~30%
+- Paragraphs 60-70 words, Flesch >60, passive ≤10%, transition words ~30%
 - Include FAQ & CTA “buy products at Highthere”
 Output final markdown only.`;
 
