@@ -4,208 +4,141 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Interactive Assignment Modules</title>
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    .page {
-      display: none;
-    }
-    .page.active {
-      display: block;
-    }
-  </style>
 </head>
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+<body class="bg-gray-100 min-h-screen flex flex-col">
 
-    <!-- Main Content Area -->
-    <div class="container mx-auto p-4 sm:p-6 lg:p-8 flex-grow"> 
-        <main id="app-container">
-            <!-- Page 1: Module 1, Assignment Part 1 -->
-            <div id="page1" class="page active">
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-                    <div class="text-center mb-10">
-                        <p class="text-indigo-600 font-semibold mb-1">Module 1</p>
-                        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">Assignment - Part 1</h1>
-                        <p class="mt-3 text-lg text-gray-500">Enlist some applications of 5G and AI in the following sectors:</p>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-                        <!-- Healthcare -->
-                        <div class="bg-blue-50 p-6 rounded-xl border-2 border-blue-200">
-                            <svg class="w-12 h-12 text-blue-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
-                            <h3 class="text-xl font-bold text-blue-900">Healthcare</h3>
-                        </div>
-                        <!-- Transportation -->
-                        <div class="bg-green-50 p-6 rounded-xl border-2 border-green-200">
-                           <svg class="w-12 h-12 text-green-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                            <h3 class="text-xl font-bold text-green-900">Transportation</h3>
-                        </div>
-                        <!-- Agriculture -->
-                        <div class="bg-yellow-50 p-6 rounded-xl border-2 border-yellow-200">
-                            <svg class="w-12 h-12 text-yellow-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <h3 class="text-xl font-bold text-yellow-900">Agriculture</h3>
-                        </div>
-                        <!-- Manufacturing -->
-                        <div class="bg-red-50 p-6 rounded-xl border-2 border-red-200">
-                           <svg class="w-12 h-12 text-red-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                            <h3 class="text-xl font-bold text-red-900">Manufacturing</h3>
-                        </div>
-                    </div>
-                     <p class="text-center mt-8 text-gray-500">You can start your research from this link: <a href="#" class="text-indigo-600 hover:underline">Intel 5G and Edge</a></p>
-                </div>
-            </div>
+  <!-- Main Content -->
+  <div class="flex-1 container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-center mb-6">Interactive Assignment Modules</h1>
 
-            <!-- Page 2: Module 1, Assignment Part 2 -->
-            <div id="page2" class="page">
-                 <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-                    <div class="text-center mb-10">
-                        <p class="text-indigo-600 font-semibold mb-1">Module 1</p>
-                        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">Assignment - Part 2</h1>
-                        <p class="mt-3 text-lg text-gray-500">Enlist some applications of IoT and AI in the following sectors:</p>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-                        <!-- Healthcare -->
-                        <div class="bg-blue-50 p-6 rounded-xl border-2 border-blue-200">
-                            <svg class="w-12 h-12 text-blue-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
-                            <h3 class="text-xl font-bold text-blue-900">Healthcare</h3>
-                        </div>
-                        <!-- Transportation -->
-                        <div class="bg-green-50 p-6 rounded-xl border-2 border-green-200">
-                           <svg class="w-12 h-12 text-green-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                            <h3 class="text-xl font-bold text-green-900">Transportation</h3>
-                        </div>
-                        <!-- Agriculture -->
-                        <div class="bg-yellow-50 p-6 rounded-xl border-2 border-yellow-200">
-                            <svg class="w-12 h-12 text-yellow-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <h3 class="text-xl font-bold text-yellow-900">Agriculture</h3>
-                        </div>
-                        <!-- Education -->
-                        <div class="bg-purple-50 p-6 rounded-xl border-2 border-purple-200">
-                           <svg class="w-12 h-12 text-purple-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 14l9-5-9-5-9 5 9 5z"></path><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20M12 14.75V22"></path></svg>
-                            <h3 class="text-xl font-bold text-purple-900">Education</h3>
-                        </div>
-                    </div>
-                     <p class="text-center mt-8 text-gray-500">You can start your research from this link: <a href="#" class="text-indigo-600 hover:underline">Intel 5G and Edge</a></p>
-                </div>
-            </div>
-            
-            <!-- Page 3: Module 2, Industry Use Cases -->
-            <div id="page3" class="page">
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-                    <div class="text-center mb-10">
-                        <p class="text-teal-600 font-semibold mb-1">Module 2</p>
-                        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">Activity: Industry Specific Use Cases</h1>
-                        <p class="mt-3 text-lg text-gray-500">Identify domains in industry specific use cases.</p>
-                    </div>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <!-- Consumer -->
-                        <div class="flex items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200">
-                            <svg class="w-8 h-8 text-gray-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                            <span class="font-semibold text-gray-800">Consumer</span>
-                        </div>
-                        <!-- Health -->
-                         <div class="flex items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200">
-                            <svg class="w-8 h-8 text-gray-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 极 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-极.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-                            <span class="font-semibold text-gray-800">Health</span>
-                        </div>
-                        <!-- Finance -->
-                         <div class="flex items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200">
-                            <svg class="w-8 h-8 text-gray-500 mr-4" fill="none" stroke="currentColor" viewBox="0 极 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01M12 6v-1m0-1V4m0 2.01V5M12 20v-1m0-1v-1m0-1v-1m0-1v-1m0-1v-1m0 0v-极m0 0v-1m0 0v-1m0 0V9m0 0V8m0 0V7m0 0V6m0 0V5m0 0V4m0 0V3"></path></svg>
-                            <span class="font-semibold text-gray-800">Finance</span>
-                        </div>
-                        <!-- Retail -->
-                         <div class="flex items-center bg-gray-50 p-4 rounded-xl border-2 border极ray-200">
-                            <svg class="w-8 h-8 text-gray-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                            <span class="font-semibold text-gray-800">Retail</span>
-                        </div>
-                         <!-- Industrial -->
-                         <div class="flex items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200">
-                           <svg class="w-8 h-8 text-gray-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2极7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0"></path></svg>
-                            <span class="font-semibold text-gray-800">Industrial</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-        
-        <!-- Navigation Buttons -->
-        <div class="flex justify-between mt-8">
-            <button id="prev-btn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg opacity-50 cursor-not-allowed" disabled>
-                Previous
-            </button>
-            <div class="flex items-center space-x-2">
-                <span class="text-sm text-gray-600" id="page-indicator">Page 1 of 3</span>
-            </div>
-            <button id="next-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg">
-                Next
-            </button>
-        </div>
+    <!-- Module Pages -->
+    <div id="pages" class="space-y-8">
+      <!-- Page 1 -->
+      <div class="page" id="page1">
+        <h2 class="text-xl font-semibold">Page 1: Introduction</h2>
+        <p class="mt-2">Welcome to the first page of this interactive module. Scroll down to navigate further.</p>
+      </div>
+
+      <!-- Page 2 -->
+      <div class="page hidden" id="page2">
+        <h2 class="text-xl font-semibold">Page 2: Learning Objectives</h2>
+        <ul class="list-disc list-inside mt-2">
+          <li>Understand navigation</li>
+          <li>Follow module structure</li>
+        </ul>
+      </div>
+
+      <!-- Page 3 -->
+      <div class="page hidden" id="page3">
+        <h2 class="text-xl font-semibold">Page 3: Content</h2>
+        <p class="mt-2">Here is where the main lesson content goes.</p>
+      </div>
+
+      <!-- Page 4 -->
+      <div class="page hidden" id="page4">
+        <h2 class="text-xl font-semibold">Page 4: Examples</h2>
+        <p class="mt-2">Interactive examples can be placed here.</p>
+      </div>
+
+      <!-- Page 5 -->
+      <div class="page hidden" id="page5">
+        <h2 class="text-xl font-semibold">Page 5: Practice</h2>
+        <p class="mt-2">Try solving problems to test your knowledge.</p>
+      </div>
+
+      <!-- Page 6 -->
+      <div class="page hidden" id="page6">
+        <h2 class="text-xl font-semibold">Page 6: Conclusion</h2>
+        <p class="mt-2">Great job! You’ve reached the end of the module.</p>
+      </div>
     </div>
+  </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const pages = document.querySelectorAll('.page');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            const pageIndicator = document.getElementById('page-indicator');
-            let currentPage = 0;
-            
-            // Function to update page visibility and button states
-            function updatePage() {
-                // Hide all pages
-                pages.forEach(page => page.classList.remove('active'));
-                
-                // Show current page
-                pages[currentPage].classList.add('active');
-                
-                // Update page indicator
-                pageIndicator.textContent = `Page ${currentPage + 1} of ${pages.length}`;
-                
-                // Update button states
-                prevBtn.disabled = currentPage === 0;
-                nextBtn.disabled = currentPage === pages.length - 1;
-                
-                // Style adjustments for disabled state
-                if (prevBtn.disabled) {
-                    prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
-                    prevBtn.classList.remove('hover:bg-gray-400');
-                } else {
-                    prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-                    prevBtn.classList.add('hover:bg-gray-400');
-                }
-                
-                if (nextBtn.disabled) {
-                    nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
-                    nextBtn.classList.remove('hover:bg-indigo-700');
-                } else {
-                    nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-                    nextBtn.classList.add('hover:bg-indigo-700');
-                }
-            }
-            
-            // Next button click event
-            nextBtn.addEventListener('click', function() {
-                if (currentPage < pages.length - 1) {
-                    currentPage++;
-                    updatePage();
-                }
-            });
-            
-            // Previous button click event
-            prevBtn.addEventListener('click', function() {
-                if (currentPage > 0) {
-                    currentPage--;
-                    updatePage();
-                }
-            });
-            
-            // Initialize page state
-            updatePage();
-        });
-    </script>
+  <!-- Navigation (Sticky at Bottom) -->
+  <div class="sticky bottom-0 bg-white border-t border-gray-300 shadow-md p-4">
+    <div class="flex flex-col items-center space-y-3">
+
+      <!-- Progress Bar -->
+      <div class="w-full bg-gray-200 rounded-full h-2">
+        <div id="progressBar" class="bg-indigo-500 h-2 rounded-full" style="width: 0%"></div>
+      </div>
+      <div id="progressText" class="text-sm text-gray-600">Page 1 of 6</div>
+
+      <!-- Navigation Buttons -->
+      <div class="flex items-center justify-center space-x-2 overflow-x-auto">
+        <button id="prevBtn" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg disabled:opacity-50">Prev</button>
+
+        <!-- Page Number Buttons -->
+        <div id="pageButtons" class="flex space-x-2"></div>
+
+        <button id="nextBtn" class="px-4 py-2 bg-indigo-500 text-white rounded-lg disabled:opacity-50">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    const pages = document.querySelectorAll('.page');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    const pageButtons = document.getElementById('pageButtons');
+
+    let currentPage = 0;
+
+    function showPage(index) {
+      pages.forEach((page, i) => {
+        page.classList.toggle('hidden', i !== index);
+      });
+
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === pages.length - 1;
+
+      // Update progress
+      const progressPercent = ((index + 1) / pages.length) * 100;
+      progressBar.style.width = progressPercent + '%';
+      progressText.textContent = `Page ${index + 1} of ${pages.length}`;
+
+      // Highlight current button
+      document.querySelectorAll('#pageButtons button').forEach((btn, i) => {
+        btn.classList.toggle('bg-indigo-500', i === index);
+        btn.classList.toggle('text-white', i === index);
+        btn.classList.toggle('bg-gray-200', i !== index);
+        btn.classList.toggle('text-gray-700', i !== index);
+      });
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 0) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentPage < pages.length - 1) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    });
+
+    // Generate page number buttons
+    pages.forEach((_, i) => {
+      const btn = document.createElement('button');
+      btn.textContent = i + 1;
+      btn.className = 'px-3 py-1 rounded-lg bg-gray-200 text-gray-700';
+      btn.addEventListener('click', () => {
+        currentPage = i;
+        showPage(currentPage);
+      });
+      pageButtons.appendChild(btn);
+    });
+
+    // Initialize
+    showPage(currentPage);
+  </script>
 </body>
 </html>
