@@ -1,220 +1,360 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-  <title>Highthere AI • Kimi K2</title>
-  <meta name="description" content="Generate SEO cannabis articles with Kimi K2" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    :root { --leaf: #22c55e; }
-    body { font-family: "Inter", system-ui, sans-serif; }
-    .glass { @apply bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-slate-300 dark:border-slate-600 rounded-2xl; }
-    input, textarea, select { @apply border border-slate-400 dark:border-slate-600 rounded-md bg-transparent w-full p-2 focus:outline-none focus:ring-2 focus:ring-green-500; }
-    .loader { animation: spin 1s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-  </style>
-</head>
-<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors">
 
-<!-- HEADER -->
-<header class="flex items-center justify-between p-4 glass shadow-lg sticky top-0 z-30">
-  <h1 class="text-xl font-bold flex items-center gap-2">
-    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2322c55e' width='24' height='24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E" alt="leaf" />
-    Highthere AI
-  </h1>
-  <button id="toggleTheme" aria-label="Toggle theme" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700">
-    <i data-lucide="sun" class="text-yellow-400 dark:hidden"></i>
-    <i data-lucide="moon" class="text-indigo-400 hidden dark:block"></i>
-  </button>
-</header>
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
+  <title>Interactive Assignment Modules</title>  
+  <script src="https://cdn.tailwindcss.com"></script>  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">  
+  <style>  
+    body {  
+      font-family: 'Inter', sans-serif;  
+      -webkit-font-smoothing: antialiased;  
+      -moz-osx-font-smoothing: grayscale;  
+    }  
+    .page {  
+      display: none;  
+    }  
+    .page.active {  
+      display: block;  
+    }  
+  </style>  
+</head>  
+<!-- Corrected: Added flex flex-col min-h-screen to ensure proper sticky footer layout -->  
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">  <!-- Main Content Area -->  
+<!-- Corrected: Added flex-grow to make the content area expand and push the footer down -->  
+<div class="container mx-auto p-4 sm:p-6 lg:p-8 flex-grow">   
+    <main id="app-container">  
+        <!-- Page 1: Module 1, Assignment Part 1 -->  
+        <div id="page1" class="page active">  
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">  
+                <div class="text-center mb-10">  
+                    <p class="text-indigo-600 font-semibold mb-1">Module 1</p>  
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">Assignment - Part 1</h1>  
+                    <p class="mt-3 text-lg text-gray-500">Enlist some applications of 5G and AI in the following sectors:</p>  
+                </div>  
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">  
+                    <!-- Healthcare -->  
+                    <div class="bg-blue-50 p-6 rounded-xl border-2 border-blue-200">  
+                        <svg class="w-12 h-12 text-blue-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>  
+                        <h3 class="text-xl font-bold text-blue-900">Healthcare</h3>  
+                    </div>  
+                    <!-- Transportation -->  
+                    <div class="bg-green-50 p-6 rounded-xl border-2 border-green-200">  
+                       <svg class="w-12 h-12 text-green-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>  
+                        <h3 class="text-xl font-bold text-green-900">Transportation</h3>  
+                    </div>  
+                    <!-- Agriculture -->  
+                    <div class="bg-yellow-50 p-6 rounded-xl border-2 border-yellow-200">  
+                        <svg class="w-12 h-12 text-yellow-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>  
+                        <h3 class="text-xl font-bold text-yellow-900">Agriculture</h3>  
+                    </div>  
+                    <!-- Manufacturing -->  
+                    <div class="bg-red-50 p-6 rounded-xl border-2 border-red-200">  
+                       <svg class="w-12 h-12 text-red-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>  
+                        <h3 class="text-xl font-bold text-red-900">Manufacturing</h3>  
+                    </div>  
+                </div>  
+                 <p class="text-center mt-8 text-gray-500">You can start your research from this link: <a href="#" class="text-indigo-600 hover:underline">Intel 5G and Edge</a></p>  
+            </div>  
+        </div>  
 
-<!-- API KEY -->
-<section class="p-4">
-  <label class="block text-sm font-medium mb-1">OpenRouter Key (Kimi K2)</label>
-  <div class="flex gap-2">
-    <input id="apiKey" type="password" placeholder="sk-or-xxxxxxxxxxxxxxxx" class="flex-1" />
-    <button id="saveKey" class="px-3 py-1 bg-green-600 text-white rounded-md text-sm">Save</button>
-  </div>
-</section>
+        <!-- Page 2: Module 1, Assignment Part 2 -->  
+        <div id="page2" class="page">  
+             <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">  
+                <div class="text-center mb-10">  
+                    <p class="text-indigo-600 font-semibold mb-1">Module 1</p>  
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">Assignment - Part 2</h1>  
+                    <p class="mt-3 text-lg text-gray-500">Enlist some applications of IoT and AI in the following sectors:</p>  
+                </div>  
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">  
+                    <!-- Healthcare -->  
+                    <div class="bg-blue-50 p-6 rounded-xl border-2 border-blue-200">  
+                        <svg class="w-12 h-12 text-blue-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>  
+                        <h3 class="text-xl font-bold text-blue-900">Healthcare</h3>  
+                    </div>  
+                    <!-- Transportation -->  
+                    <div class="bg-green-50 p-6 rounded-xl border-2 border-green-200">  
+                       <svg class="w-12 h-12 text-green-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>  
+                        <h3 class="text-xl font-bold text-green-900">Transportation</h3>  
+                    </div>  
+                    <!-- Agriculture -->  
+                    <div class="bg-yellow-50 p-6 rounded-xl border-2 border-yellow-200">  
+                        <svg class="w-12 h-12 text-yellow-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>  
+                        <h3 class="text-xl font-bold text-yellow-900">Agriculture</h3>  
+                    </div>  
+                    <!-- Education -->  
+                    <div class="bg-purple-50 p-6 rounded-xl border-2 border-purple-200">  
+                       <svg class="w-12 h-12 text-purple-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 14l9-5-9-5-9 5 9 5z"></path><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20M12 14.75V22"></path></svg>  
+                        <h3 class="text-xl font-bold text-purple-900">Education</h3>  
+                    </div>  
+                </div>  
+                 <p class="text-center mt-8 text-gray-500">You can start your research from this link: <a href="#" class="text-indigo-600 hover:underline">Intel 5G and Edge</a></p>  
+            </div>  
+        </div>  
+          
+        <!-- Page 3: Module 2, Industry Use Cases -->  
+        <div id="page3" class="page">  
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">  
+                <div class="text-center mb-10">  
+                    <p class="text-teal-600 font-semibold mb-1">Module 2</p>  
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">Activity: Industry Specific Use Cases</h1>  
+                    <p class="mt-3 text-lg text-gray-500">Identify domains in industry specific use cases.</p>  
+                </div>  
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">  
+                    <!-- Consumer -->  
+                    <div class="flex items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200">  
+                        <svg class="w-8 h-8 text-gray-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>  
+                        <span class="font-semibold text-gray-800">Consumer</span>  
+                    </div>  
+                    <!-- Health -->  
+                     <div class="flex items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200">  
+                        <svg class="w-8 h-8 text-gray-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>  
+                        <span class="font-semibold text-gray-800">Health</span>  
+                    </div>  
+                    <!-- Finance -->  
+                     <div class="flex items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200">  
+                        <svg class="w-8 h-8 text-gray-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01M12 6v-1m0-1V4m0 2.01V5M12 20v-1m0-1v-1m0-1v-1m0-1v-1m0-1v-1m0 0v-1m0 0v-1m0 0v-1m0 0V9m0 0V8m0 0V7m0 0V6m0 0V5m0 0V4m0 0V3"></path></svg>  
+                        <span class="font-semibold text-gray-800">Finance</span>  
+                    </div>  
+                    <!-- Retail -->  
+                     <div class="flex items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200">  
+                        <svg class="w-8 h-8 text-gray-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>  
+                        <span class="font-semibold text-gray-800">Retail</span>  
+                    </div>  
+                     <!-- Industrial -->  
+                     <div class="flex items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200">  
+                       <svg class="w-8 h-8 text-gray-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>  
+                        <span class="font-semibold text-gray-800">Industrial</span>  
+                    </div>  
+                    <!-- Transport -->  
+                    <div class="flex items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200">  
+                       <svg class="w-8 h-8 text-gray-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l2 2h8a1 1 0 001-1zM3 11h10M16 16V6a1 1 0 00-1-1h-1m1 11l2 2h2.5a1 1 0 001-.828l1.179-5.894A1 1 0 0019.5 9H16"></path></svg>  
+                        <span class="font-semibold text-gray-800">Transport</span>  
+                    </div>  
+                </div>  
+            </div>  
+        </div>  
 
-<!-- NEWS -->
-<section id="news" class="p-4">
-  <h2 class="text-sm font-semibold mb-2 flex items-center gap-1"><i data-lucide="newspaper" class="text-sky-500"></i> Latest Cannabis News</h2>
-  <ul id="newsList" class="space-y-1 text-xs"></ul>
-</section>
+        <!-- Page 4: Module 3, Data Science Lifecycle -->  
+        <div id="page4" class="page">  
+            <div class="max-w-7xl w-full bg-white p-8 rounded-2xl shadow-lg border border-gray-200">  
+                <div class="text-center mb-10">  
+                    <p class="text-rose-600 font-semibold mb-1">Module 3</p>  
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">Data Science Project Lifecycle</h1>  
+                    <p class="mt-3 text-lg text-gray-500">A structured approach to solving problems with data.</p>  
+                </div>  
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">  
+                    <div class="bg-sky-50 border-2 border-sky-200 p-6 rounded-xl">  
+                        <div class="flex items-center mb-4">  
+                            <div class="bg-sky-500 text-white p-3 rounded-lg mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></div>  
+                            <h2 class="text-xl font-bold text-sky-900">1. Problem Scoping</h2>  
+                        </div>  
+                        <ul class="list-disc list-inside text-gray-700 space-y-2"><li>What is the root cause?</li></ul>  
+                    </div>  
+                    <div class="bg-indigo-50 border-2 border-indigo-200 p-6 rounded-xl">  
+                        <div class="flex items-center mb-4">  
+                            <div class="bg-indigo-500 text-white p-3 rounded-lg mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4M4 7v10" /></svg></div>  
+                            <h2 class="text-xl font-bold text-indigo-900">2. Data Acquisition</h2>  
+                        </div>  
+                        <ul class="list-disc list-inside text-gray-700 space-y-2"><li>Which data is important?</li><li>How do you source for the data?</li></ul>  
+                    </div>  
+                    <div class="bg-teal-50 border-2 border-teal-200 p-6 rounded-xl">  
+                        <div class="flex items-center mb-4">  
+                            <div class="bg-teal-500 text-white p-3 rounded-lg mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" /></svg></div>  
+                            <h2 class="text-xl font-bold text-teal-900">3. Data Exploration</h2>  
+                        </div>  
+                        <ul class="list-disc list-inside text-gray-700 space-y-2"><li>What methods can you use to clean data?</li></ul>  
+                    </div>  
+                    <div class="bg-rose-50 border-2 border-rose-200 p-6 rounded-xl">  
+                        <div class="flex items-center mb-4">  
+                            <div class="bg-rose-500 text-white p-3 rounded-lg mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2 1m0 0l-2-1m2 1v2.5M3 12l2-1m0 0l2 1m-2-1v-2.5M20 12l2 1m-2-1l2-1m-2 1v-2.5M4 17l2-1m0 0l2 1m-2-1v-2.5M12 21l-2-1m0 0l-2 1m2-1v-2.5M12 3v2.5" /></svg></div>  
+                            <h2 class="text-xl font-bold text-rose-900">4. Modeling</h2>  
+                        </div>  
+                        <ul class="list-disc list-inside text-gray-700 space-y-2"><li>Is this a classification or a regression problem?</li><li>Which of the popular AI models can you use?</li></ul>  
+                    </div>  
+                    <div class="bg-amber-50 border-2 border-amber-200 p-6 rounded-xl">  
+                        <div class="flex items-center mb-4">  
+                            <div class="bg-amber-500 text-white p-3 rounded-lg mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>  
+                            <h2 class="text-xl font-bold text-amber-900">5. Evaluate</h2>  
+                        </div>  
+                        <ul class="list-disc list-inside text-gray-700 space-y-2"><li>Which metrics can you use to measure model performance?</li></ul>  
+                    </div>  
+                    <div class="bg-violet-50 border-2 border-violet-200 p-6 rounded-xl">  
+                        <div class="flex items-center mb-4">  
+                            <div class="bg-violet-500 text-white p-3 rounded-lg mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg></div>  
+                            <h2 class="text-xl font-bold text-violet-900">6. Deployment</h2>  
+                        </div>  
+                        <ul class="list-disc list-inside text-gray-700 space-y-2"><li>How can you deploy the model?</li><li>Predict results in real-time or consolidate daily?</li></ul>  
+                    </div>  
+                </div>  
+            </div>  
+        </div>  
 
-<!-- MAIN FORM -->
-<main class="p-4 space-y-4">
-  <form class="glass p-4 space-y-3">
-    <textarea id="prompt" rows="3" placeholder="Article prompt…" required></textarea>
-    <input id="keyword" placeholder="Main keyword" required />
-    <textarea id="rel" rows="2" placeholder="Related keywords (comma)"></textarea>
-    <textarea id="long" rows="2" placeholder="Long-tail keywords (comma)"></textarea>
-    <select id="count">
-      <option>800-1200 words</option>
-      <option>1200-1800 words</option>
-      <option>1800-2500 words</option>
-      <option>2500+ words</option>
-    </select>
-    <div class="flex gap-2 items-center">
-      <select id="tone" class="flex-1">
-        <option>Conversational & Friendly</option>
-        <option>Educational & Informative</option>
-        <option>Expert & Authoritative</option>
-        <option>Playful & Humorous</option>
-        <option>Relaxed & Chill</option>
-      </select>
-      <button id="recTone" type="button" title="Recommend tone" class="p-2 glass"><i data-lucide="zap"></i></button>
-    </div>
-    <button id="genBtn" type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold py-2 rounded-xl shadow">Generate with Kimi K2</button>
-  </form>
+        <!-- Page 5: Module 4, Pandemic Scenario -->  
+        <div id="page5" class="page">  
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">  
+                <div class="text-center mb-10">  
+                    <p class="text-cyan-600 font-semibold mb-1">Module 4</p>  
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">Assignment: The Scenario</h1>  
+                </div>  
+                <div class="flex flex-col lg:flex-row items-center gap-8">  
+                    <div class="lg:w-1/3 text-center">  
+                        <svg class="w-24 h-24 text-cyan-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 3.528v1.444A2.002 2.002 0 009.999 7h4.002A2.002 2.002 0 0016 4.972V3.528M9 21h6m-6 0v-4.5m6 4.5v-4.5M12 3V2.25A2.25 2.25 0 009.75 0h-3.5A2.25 2.25 0 004 2.25V12a2.25 2.25 0 002.25 2.25h.5A2.25 2.25 0 009 12V3.528zM12 3h2.25A2.25 2.25 0 0116.5 5.25V12a2.25 2.25 0 01-2.25 2.25h-.5A2.25 2.25 0 0111 12V3z"></path></svg>  
+                    </div>  
+                    <div class="lg:w-2/3 text-left space-y-4 text-gray-700 text-lg">  
+                        <p><strong class="text-gray-900">Your Role:</strong> You are a medical officer at Hospital SavingLives.</p>  
+                        <p><strong class="text-gray-900">The Challenge:</strong> Your hospital has been swamped with the rising cases of the pandemic. The hospital is checking on the results from the test kit manually, and the results are out three days later.</p>  
+                        <p><strong class="text-gray-900">The Task:</strong> You are tasked to see if there is a way to speed up the process of evaluating the results from the test kit using AI.</p>  
+                    </div>  
+                </div>  
+            </div>  
+        </div>  
 
-  <!-- OUTPUT -->
-  <section id="output" class="hidden glass p-4 space-y-3">
-    <h2 class="font-semibold text-lg flex items-center gap-2"><i data-lucide="file-text"></i> Article</h2>
-    <pre id="article" class="text-sm whitespace-pre-wrap overflow-auto max-h-96"></pre>
-    <button id="toHtmlBtn" class="w-full bg-sky-500 text-white py-2 rounded-xl">Convert to WordPress HTML</button>
-    <textarea id="htmlOut" class="hidden w-full h-48 bg-slate-900 text-green-300 font-mono rounded-xl p-2" readonly></textarea>
-    <button id="copyBtn" class="hidden w-full bg-indigo-500 text-white py-2 rounded-xl">Copy HTML</button>
-  </section>
+        <!-- Page 6: Module 5, Movie Recommendation Scenario -->  
+        <div id="page6" class="page">  
+             <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">  
+                <div class="text-center mb-10">  
+                    <p class="text-orange-600 font-semibold mb-1">Module 5</p>  
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">Assignment: The Scenario</h1>  
+                </div>  
+                <div class="flex flex-col lg:flex-row items-center gap-8">  
+                    <div class="lg:w-1/3 text-center">  
+                        <svg class="w-24 h-24 text-orange-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>  
+                    </div>  
+                    <div class="lg:w-2/3 text-left space-y-4 text-gray-700 text-lg">  
+                        <p><strong class="text-gray-900">Your Goal:</strong> You and your friends are big fans of movies, finding it very tough to search for movies of the same genre.</p>  
+                        <p><strong class="text-gray-900">The Idea:</strong> After knowing about Machine Learning models, you all decided to design a movie recommendation system.</p>  
+                        <p><strong class="text-gray-900">The First Step:</strong> To start with, you all decided to draft an outliner for the movie recommendation system on the knowledge you have gained till this week.</p>  
+                    </div>  
+                </div>  
+            </div>  
+        </div>  
 
-  <!-- LOADER -->
-  <div id="loader" class="hidden flex justify-center items-center gap-2">
-    <i data-lucide="loader" class="animate-spin text-green-500"></i>
-    <span id="loaderMsg"></span>
-  </div>
-</main>
+    </main>  
+</div>  
 
-<script>
-/* ---------- THEME ---------- */
-const toggleBtn = document.getElementById('toggleTheme');
-const body = document.documentElement;
-function setTheme(dark){
-  body.classList.toggle('dark', dark);
-  localStorage.setItem('theme', dark ? 'dark' : 'light');
-}
-const savedTheme = localStorage.getItem('theme');
-setTheme(savedTheme ? savedTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
-toggleBtn.addEventListener('click', () => setTheme(!body.classList.contains('dark')));
+<!-- Sticky Footer Navigation -->  
+<footer class="sticky bottom-0 bg-white border-t border-gray-200 shadow-md z-50">  
+    <div class="container mx-auto p-4 sm:px-6 lg:px-8 flex flex-col space-y-3">  
+        
+      <!-- Progress bar -->  
+      <div class="w-full">  
+        <div class="flex justify-between mb-1">  
+          <span id="pageIndicator" class="text-gray-600 font-medium">Page 1 of 6</span>  
+        </div>  
+        <div class="w-full bg-gray-200 rounded-full h-2">  
+          <div id="progressBar" class="bg-indigo-600 h-2 rounded-full transition-all duration-300 ease-in-out" style="width: 16.6%;"></div>  
+        </div>  
+      </div>  
+  
+      <!-- Navigation buttons -->  
+      <div class="flex justify-between items-center">  
+        <button id="prevBtn" class="flex items-center px-4 py-2 bg-gray-200 text-gray-800 font-semibold rounded-lg shadow-sm hover:bg-gray-300 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed transition-colors">  
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>  
+          Previous  
+        </button>  
 
-/* ---------- API KEY ---------- */
-const apiKeyInput = document.getElementById('apiKey');
-const saveBtn = document.getElementById('saveKey');
-function getKey(){ return localStorage.getItem('kimiKey') || ''; }
-function saveKey(){ localStorage.setItem('kimiKey', apiKeyInput.value.trim()); alert('Saved'); }
-apiKeyInput.value = getKey();
-saveBtn.addEventListener('click', saveKey);
+        <!-- Page number buttons for md+ screens -->  
+        <div id="pageButtons" class="hidden md:flex space-x-2"></div>  
 
-/* ---------- ICONS ---------- */
-lucide.createIcons();
+        <!-- Dropdown for small screens -->  
+        <select id="pageDropdown" class="md:hidden px-3 py-2 border border-gray-300 rounded-lg shadow-sm text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></select>  
 
-/* ---------- NEWS ---------- */
-(async () => {
-  const list = document.getElementById('newsList');
-  try {
-    const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.leafly.com%2Fnews%2Frss.xml&count=4');
-    const data = await res.json();
-    data.items.forEach(item=>{
-      const li = document.createElement('li');
-      li.innerHTML = `<a href="${item.link}" target="_blank" class="text-sky-600 dark:text-sky-400">${item.title}</a>`;
-      list.appendChild(li);
-    });
-  } catch {/* silent */}
-})();
+        <button id="nextBtn" class="flex items-center px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-sm hover:bg-indigo-700 disabled:bg-indigo-300 disabled:cursor-not-allowed transition-colors">  
+          Next  
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>  
+        </button>  
+      </div>  
+    </div>  
+</footer>  
 
-/* ---------- KIMI K2 ---------- */
-const ENDPOINT = 'https://openrouter.ai/api/v1/chat/completions';
-const MODEL = 'moonshotai/kimi-k2:free';
+<!-- JavaScript for navigation -->  
+<script>  
+    document.addEventListener("DOMContentLoaded", () => {  
+      let currentPage = 1;  
+      const totalPages = 6;  
+      const pages = document.querySelectorAll(".page");  
+      const prevBtn = document.getElementById("prevBtn");  
+      const nextBtn = document.getElementById("nextBtn");  
+      const pageIndicator = document.getElementById("pageIndicator");  
+      const progressBar = document.getElementById("progressBar");  
+      const pageButtonsContainer = document.getElementById("pageButtons");  
+      const pageDropdown = document.getElementById("pageDropdown");  
 
-async function askKimi(prompt){
-  const key = getKey();
-  if(!key) throw new Error('Please add your OpenRouter key above.');
-  const ctrl = new AbortController();
-  const timer = setTimeout(()=>ctrl.abort(), 30000);
-  const res = await fetch(ENDPOINT, {
-    method:'POST',
-    headers:{
-      'Content-Type':'application/json',
-      'Authorization': `Bearer ${key}`,
-      'HTTP-Referer': location.href,
-      'X-Title':'Highthere AI'
-    },
-    body:JSON.stringify({model:MODEL, messages:[{role:'user', content:prompt}]}),
-    signal:ctrl.signal
-  });
-  clearTimeout(timer);
-  if(!res.ok) throw new Error(`Kimi error ${res.status}`);
-  const json = await res.json();
-  return json.choices[0]?.message?.content || '';
-}
+      // Create page number buttons dynamically (desktop)  
+      for (let i = 1; i <= totalPages; i++) {  
+        const btn = document.createElement("button");  
+        btn.textContent = i;  
+        btn.className = "w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors";  
+        btn.addEventListener("click", () => {  
+          currentPage = i;  
+          updatePage();  
+        });  
+        pageButtonsContainer.appendChild(btn);  
+      }  
+      const pageButtons = pageButtonsContainer.querySelectorAll("button");  
 
-/* ---------- HELPERS ---------- */
-const $ = id => document.getElementById(id);
-function show(el, on=true){ el.classList.toggle('hidden',!on); }
-function loading(msg){
-  show($('loader'),true); $('loaderMsg').textContent = msg;
-  show($('output'),false);
-}
-function done(){ show($('loader'),false); }
+      // Create dropdown options (mobile)  
+      for (let i = 1; i <= totalPages; i++) {  
+        const option = document.createElement("option");  
+        option.value = i;  
+        option.textContent = `Page ${i}`;  
+        pageDropdown.appendChild(option);  
+      }  
+      pageDropdown.addEventListener("change", (e) => {  
+        currentPage = parseInt(e.target.value);  
+        updatePage();  
+      });  
 
-/* ---------- PROMPT BUILDERS ---------- */
-const buildPrompt = (p,k,r,l,w,t) =>
-`You are an expert SEO cannabis writer for Highthere.me DC dispensary.
-Main prompt: ${p}
-Main keyword: ${k}
-Related keywords: ${r}
-Long-tail keywords: ${l}
-Word count: ${w}
-Tone: ${t}
+      function updatePage() {  
+        // Show the right page  
+        pages.forEach((page, index) => {  
+          page.classList.toggle("active", index === currentPage - 1);  
+        });  
+        // Update footer text and progress  
+        pageIndicator.textContent = `Page ${currentPage} of ${totalPages}`;  
+        progressBar.style.width = `${(currentPage / totalPages) * 100}%`;  
+        prevBtn.disabled = currentPage === 1;  
+        nextBtn.disabled = currentPage === totalPages;  
 
-Guidelines:
-- One H1 containing main keyword
-- Long-tails used as H2/H3
-- Paragraphs 60-70 words, Flesch >60, passive ≤10%, transition words ~30%
-- Include FAQ & CTA “buy products at Highthere”
-Output final markdown only.`;
+        // Update page number buttons style  
+        pageButtons.forEach((btn, idx) => {  
+          if (idx + 1 === currentPage) {  
+            btn.classList.add("bg-indigo-600", "text-white", "border-indigo-600");  
+            btn.classList.remove("hover:bg-gray-100", "text-gray-700");  
+          } else {  
+            btn.classList.remove("bg-indigo-600", "text-white", "border-indigo-600");  
+            btn.classList.add("hover:bg-gray-100", "text-gray-700");  
+          }  
+        });  
 
-const buildHtmlPrompt = article =>
-`Convert the following markdown to clean WordPress HTML (H1-H3, p, ul/li). Add <a href="https://highthere.me/shop">buy products at Highthere</a> in the conclusion. Output raw HTML only.\n\n${article}`;
+        // Sync dropdown  
+        pageDropdown.value = currentPage;  
 
-/* ---------- EVENTS ---------- */
-$('recTone').addEventListener('click', async () => {
-  const k = $('keyword').value.trim();
-  if(!k) return alert('Enter main keyword');
-  loading('Suggesting tones…');
-  const res = await askKimi(`Suggest 5 tone options with 1-sentence justification for keyword "${k}". Markdown list.`);
-  alert(res); done();
-});
+        // Always scroll to top  
+        window.scrollTo({ top: 0, behavior: 'smooth' });  
+      }  
 
-$('genBtn').parentElement.addEventListener('submit', async e=>{
-  e.preventDefault();
-  const [p,k,r,l,w,t] = ['prompt','keyword','rel','long','count','tone'].map($);
-  if(!p.value || !k.value) return alert('Prompt & keyword required');
-  loading('Generating article…');
-  try {
-    const article = await askKimi(buildPrompt(p.value,k.value,r.value,l.value,w.value,t.value));
-    $('article').textContent = article;
-    show($('output'),true);
-  } catch(err){
-    alert(err.message || 'Generation failed');
-  } finally { done(); }
-});
+      prevBtn.addEventListener("click", () => {  
+        if (currentPage > 1) {  
+          currentPage--;  
+          updatePage();  
+        }  
+      });  
 
-$('toHtmlBtn').addEventListener('click', async () => {
-  const article = $('article').textContent;
-  loading('Converting…');
-  const html = await askKimi(buildHtmlPrompt(article));
-  $('htmlOut').value = html;
-  show($('htmlOut'),true); show($('copyBtn'),true);
-  done();
-});
+      nextBtn.addEventListener("click", () => {  
+        if (currentPage < totalPages) {  
+          currentPage++;  
+          updatePage();  
+        }  
+      });  
 
-$('copyBtn').addEventListener('click', () => {
-  navigator.clipboard.writeText($('htmlOut').value);
-  alert('HTML copied to clipboard!');
-});
+      // Initial load  
+      updatePage();  
+    });  
 </script>
-</body>
+
+</body>  
 </html>
