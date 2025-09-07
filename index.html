@@ -2,310 +2,1319 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Interactive Assignment Modules</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz Practice — Dark Theme</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    .page {
-      display: none;
-    }
-    .page.active {
-      display: block;
-    }
+    html, body { height: 100%; }
+    .glass { background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); }
+    .option-disabled { pointer-events: none; opacity: 0.85; }
+    .sticky-safe { position: sticky; top: 0; z-index: 40; }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+<body class="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-slate-100">
+  <header class="sticky-safe bg-slate-900/90 backdrop-blur border-b border-slate-700">
+    <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+      <h1 class="text-xl sm:text-2xl font-semibold tracking-tight">Quiz Practice</h1>
+      <div class="hidden sm:flex items-center gap-2">
+        <button id="resetAllBtn" class="text-sm px-3 py-2 rounded-lg border border-slate-600 bg-slate-700 hover:bg-slate-600">Reset All</button>
+        <button id="showOnlyUnanswered" class="text-sm px-3 py-2 rounded-lg border border-slate-600 bg-slate-700 hover:bg-slate-600">Show Unanswered</button>
+      </div>
+    </div>
+    
+    <div class="max-w-5xl mx-auto px-2 pb-3 overflow-x-auto">
+      <div id="subjectTabs" class="flex gap-2"></div>
+    </div>
+  </header>
 
-    <!-- Main Content Area -->
-    <div class="container mx-auto p-4 sm:p-6 lg:p-8 flex-grow"> 
-        <main id="app-container">
-            <!-- Page 1: Module 1, Assignment Part 1 -->
-            <div id="page1" class="page active">
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-                    <div class="text-center mb-10">
-                        <p class="text-indigo-600 font-semibold mb-1">Module 1</p>
-                        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">Assignment - Part 1</h1>
-                        <p class="mt-3 text-lg text-gray-500">Enlist some applications of 5G and AI in the following sectors:</p>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-                        <!-- Healthcare -->
-                        <div class="bg-blue-50 p-6 rounded-xl border-2 border-blue-200">
-                            <svg class="w-12 h-12 text-blue-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
-                            <h3 class="text-xl font-bold text-blue-900">Healthcare</h3>
-                        </div>
-                        <!-- Transportation -->
-                        <div class="bg-green-50 p-6 rounded-xl border-2 border-green-200">
-                           <svg class="w-12 h-12 text-green-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                            <h3 class="text-xl font-bold text-green-900">Transportation</h3>
-                        </div>
-                        <!-- Agriculture -->
-                        <div class="bg-yellow-50 p-6 rounded-xl border-2 border-yellow-200">
-                            <svg class="w-12 h-12 text-yellow-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <h3 class="text-xl font-bold text-yellow-900">Agriculture</h3>
-                        </div>
-                        <!-- Manufacturing -->
-                        <div class="bg-red-50 p-6 rounded-xl border-2 border-red-200">
-                           <svg class="w-12 h-12 text-red-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                            <h3 class="text-xl font-bold text-red-900">Manufacturing</h3>
-                        </div>
-                    </div>
-                     <p class="text-center mt-8 text-gray-500">You can start your research from this link: <a href="#" class="text-indigo-600 hover:underline">Intel 5G and Edge</a></p>
-                </div>
-            </div>
+  <div class="max-w-5xl mx-auto px-4 mt-4">
+    <div class="w-full h-2 bg-slate-700 rounded-full overflow-hidden">
+      <div id="progressBar" class="h-2 bg-emerald-500" style="width:0%"></div>
+    </div>
+    <div class="mt-2 text-sm text-slate-400" id="progressText"></div>
+  </div>
 
-            <!-- Page 2: Module 1, Assignment Part 2 -->
-            <div id="page2" class="page">
-                 <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-                    <div class="text-center mb-10">
-                        <p class="text-indigo-600 font-semibold mb-1">Module 1</p>
-                        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">Assignment - Part 2</h1>
-                        <p class="mt-3 text-lg text-gray-500">Enlist some applications of IoT and AI in the following sectors:</p>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-                        <!-- Healthcare -->
-                        <div class="bg-blue-50 p-6 rounded-xl border-2 border-blue-200">
-                            <svg class="w-12 h-12 text-blue-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 极 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
-                            <h3 class="text-xl font-bold text-blue-900">Healthcare</h3>
-                        </div>
-                        <!-- Transportation -->
-                        <div class="bg-green-50 p-6 rounded-xl border-2 border-green-200">
-                           <svg class="w-12 h-12 text-green-500 mx-auto mb-3" fill="none" stroke="current极olor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                            <h3 class="text-xl font-bold text-green-900">Transportation</h3>
-                        </div>
-                        <!-- Agriculture -->
-                        <div class="bg-yellow-50 p-6 rounded-xl border-2 border-yellow-200">
-                            <svg class="w-12 h-12 text-yellow-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <h3 class="text-xl font-bold text-yellow-900">Agriculture</h3>
-                        </div>
-                        <!-- Education -->
-                        <div class="bg-purple-50 p-6 rounded-xl border-2 border-purple-200">
-                           <svg class="w-12 h-12 text-purple-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 14l9-5-9-5-9 5 9 5z"></path><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20M12 14.75V22"></path></svg>
-                            <h3 class="text-xl font-bold text-purple-900">Education</h3>
-                        </div>
-                    </div>
-                     <p class="text-center mt-8 text-gray-500">You can start your research from this link: <a href="#" class="text-indigo-600 hover:underline">Intel 5G and Edge</a></p>
-                </div>
-            </div>
-            
-            <!-- Page 3: Module 2, Industry Use Cases -->
-            <div id="page3" class="page">
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-                    <div class="text-center mb-10">
-                        <p class="text-teal-600 font-semibold mb-极">Module 2</p>
-                        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">Activity: Industry Specific Use Cases</h1>
-                        <p class="mt-3 text-lg text-gray-500">Identify domains in industry specific use cases.</p>
-                    </div>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <!-- Consumer -->
-                        <div class="flex items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200">
-                            <svg class="w-8 h-8 text-gray-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                            <span class="font-semibold text-gray-800">Consumer</span>
-                        </div>
-                        <!-- Health -->
-                         <div class="flex items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200">
-                            <svg class="w-8 h-8 text-gray-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-                            <span class="font-semibold text-gray-800">Health</span>
-                        </div>
-                        <!-- Finance -->
-                         <div class="flex items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200">
-                            <svg class="w-8 h-8 text-gray-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01M12 6v-1m0-1V4m0 2.01V5M12 20v-1m0-1v-1m0-1v-1m0-1v-1m0-1v-1m0 0v-1m0 0v-1m0 0v-1m0 0V9m0 0V8m0 0V7m0 0V6m0 0V5m0 0V4m0 0V3"></path></svg>
-                            <span class="font-semibold text-gray-800">Finance</span>
-                        </div>
-                        <!-- Retail -->
-                         <div class="flex items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200">
-                            <svg class="w-8 h-8 text-gray-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                            <span class="font-semibold text-gray-800">Retail</span>
-                        </div>
-                         <!-- Industrial -->
-                         <div class="flex items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200">
-                           <svg class="w-8 h-8 text-gray-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2极16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                            <span class="font-semibold text-gray-800">Industrial</span>
-                        </div>
-                        <!-- Transport -->
-                        <div class="flex items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200">
-                           <svg class="w-8 h-8 text-gray-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l2 2h8a1 1 0 001-1zM3 11h10M16 16V6a1 1 0 00-1-1h-1m1 11l2 2极2.5a1 1 0 001-.828l1.179-5.894A1 1 0 0019.5 9H16"></path></svg>
-                            <span class="font-semibold text-gray-800">Transport</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Page 4: Module 3, Data Science Lifecycle -->
-            <div id="page4" class="page">
-                <div class="max-w-7xl w-full bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-                    <div class="text-center mb-10">
-                        <p class="text-rose-600 font-semibold mb-1">Module 3</p>
-                        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">Data Science Project Lifecycle</h1>
-                        <p class="mt-3 text-lg text-gray-500">A structured approach to solving problems with data.</p>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="bg-sky-50 border-2 border-sky-200 p-6 rounded-xl">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-sky-500 text-white p-3 rounded-lg mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></div>
-                                <h2 class="text-xl font-bold text-sky-900">1. Problem Scoping</h2>
-                            </div>
-                            <ul class="list-disc list-inside text-gray-700 space-y-2"><li>What is the root cause?</li></ul>
-                        </div>
-                        <div class="bg-indigo-50 border-2 border-indigo-200 p-6 rounded-xl">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-indigo-500 text-white p-3 rounded-lg mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4M4 7v10" /></svg></div>
-                                <h2 class="text-xl font-bold text-indigo-900">2. Data Acquisition</h2>
-                            </div>
-                            <ul class="list-disc list-inside text-gray-700 space-y-2"><li>Which data is important?</li><li>How do you source for the data?</极></ul>
-                        </div>
-                        <div class="bg-teal-50 border-2 border-teal-200 p-6 rounded-xl">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-teal-500 text-white p-3 rounded-lg mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" /></svg></div>
-                                <h2 class="text-xl font-bold text-teal-900">3. Data Exploration</h2>
-                            </div>
-                            <ul class="list-disc list-inside text-gray-700 space-y-2"><li>What methods can you use to clean data?</li></ul>
-                        </div>
-                        <div class="bg-rose-50 border-2 border-rose-200 p-6 rounded-xl">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-rose-500 text-white p-3 rounded-lg mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2 1m0 0极-2-1m2 1v2.5M3 12l2-1m0 0l2 1m-2-1v-2.5M20 12l2 1m-2-1l2-1m-2 1v-2.5M4 17l2-1m0 0l2 1m-2-1v-2.5M12 21l-2-1m0 0l-2 1m2-1v-2.5M12 3v2.5" /></svg></div>
-                                <h2 class="text-xl font-bold text-rose-900">4. Modeling</h2>
-                            </div>
-                            <ul class="list-disc list-inside text-gray-700 space-y-2"><li>Is this a classification or a regression problem?</li><li>Which of the popular AI models can you use?</li></ul>
-                        </div>
-                        <div class="bg-amber-50 border-2 border-amber-200 p-6 rounded-xl">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-amber-500 text-white p-3 rounded-lg mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
-                                <h2 class="text-xl font-bold text-amber-900">5. Evaluate</h2>
-                            </div>
-                            <ul class="list-disc list-inside text-gray-700 space-y-2"><li>Which metrics can you use to measure model performance?</li></ul>
-                        </div>
-                        <div class="bg-violet-50 border-2 border-violet-200 p-6 rounded-xl">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-violet-500 text-white p-3 rounded-lg mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg></div>
-                                <h2 class="text-xl font-bold text-violet-900">6. Deployment</h2>
-                            </div>
-                            <ul class="list-disc list-inside text-gray-700 space-y-2"><li>How can you deploy the model?</li><li>Predict results in real-time or consolidate daily?</li></ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <main class="max-w-5xl mx-auto p-4 pb-24">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 justify-between mb-3">
+       <div class="flex items-center gap-2">
+        <label class="text-sm text-slate-400">Questions per page</label>
+        <select id="perPage" class="px-3 py-2 rounded-lg border border-slate-600 bg-slate-700 text-sm">
+          <option value="5">5</option>
+          <option value="10" selected>10</option>
+          <option value="15">15</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+        </select>
+       </div>
+      <div class="flex items-center gap-2">
+        <input id="searchBox" placeholder="Search question text..." class="w-full sm:w-72 px-3 py-2 rounded-lg border border-slate-600 bg-slate-700 text-sm" />
+        <button id="clearSearch" class="text-sm px-3 py-2 rounded-lg border border-slate-600 bg-slate-700 hover:bg-slate-600">Clear</button>
+      </div>
+    </div>
+    <div class="mb-4">
+      <button id="resetSubjectBtn" class="text-sm px-3 py-2 rounded-lg border border-slate-600 bg-slate-700 hover:bg-slate-600">
+        Reset This Subject
+      </button>
+    </div>
+    <div id="questionsContainer" class="grid grid-cols-1 gap-4"></div>
 
-            <!-- Page 5: Module 4, Pandemic Scenario -->
-            <div id="page5" class="page">
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-                    <div class="text-center mb-10">
-                        <p class="text-cyan-600 font-semibold mb-1">Module 4</p>
-                        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">Assignment: The Scenario</h1>
-                    </div>
-                    <div class="flex flex-col lg:flex-row items-center gap-8">
-                        <div class="lg:w-1/3 text-center">
-                            <svg class="w-24 h-24 text-cyan-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 3.528v1.444A2.002 2.002 0 009.999 7h4.002A2.002 2.002 0 0016 4.972V3.528M9 21h6m-6 0v-4.5m6 4.5v-4.5M12 3V2.25A2.25 2.25 0 009.75 0h-3.5A2.25 2.25 0 004 2.25V12a2.25 2.25 0 002.25 2.25h.5A2.25 2.25 0 009 12V3.528zM12 3h2.25A2.25 2.25 0 0116.5 5.25V12a2.25 2.25 0 01-2.25 2.25h-.5A2.25 2.25 0 0111 12V3z"></path></svg>
-                        </div>
-                        <div class="lg:w-2/3 text-left space-y-4 text-gray-700 text-lg">
-                            <p><strong class="text-gray-900">Your Role:</strong> You are a medical officer at Hospital SavingLives.</p>
-                            <p><strong class="text-gray-900">The Challenge:</strong> Your hospital has been swamped with the rising cases of the pandemic. The hospital is checking on the results from the test kit manually, and the results are out three days later.</p>
-                            <p><strong class="text-gray-900">The Task:</strong> You are tasked to see if there is a way to speed up the process of evaluating the results from the test kit using AI.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Page 6: Module 5, Movie Recommendation Scenario -->
-            <div id="page6" class="page">
-                 <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-                    <div class="text-center mb-10">
-                        <p class="text-orange-600 font-sem极bold mb-1">Module 5</p>
-                        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">Assignment: The Scenario</h1>
-                    </div>
-                    <div class="flex flex-col lg:flex-row items-center gap-8">
-                        <div class="lg:w-1/3 text-center">
-                            <svg class="w-24 h-24 text-orange-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8极4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
-                        </div>
-                        <div class="lg:w-2/3 text-left space-y-4 text-gray-700 text-lg">
-                            <p><strong class="text-gray-900">Your Goal:</strong> You and your friends are big fans of movies, finding it very tough to search for movies of the same genre.</p>
-                            <p><strong class="text-gray-900">The Idea:</strong> After knowing about Machine Learning models, you all decided to design a movie recommendation system.</p>
-                            <p><strong class="text-gray-900">The First Step:</strong> To start with, you all decided to draft an outliner for the movie recommendation system on the knowledge you have gained till this week.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-        
-        <!-- Navigation Buttons -->
-        <div class="flex justify-between mt-8">
-            <button id="prev-btn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg opacity-50 cursor-not-allowed" disabled>
-                Previous
-            </button>
-            <div class="flex items-center space-x-2">
-                <span class="text-sm text-gray-600" id="page-indicator">Page 1 of 6</span>
-            </div>
-            <button id="next-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg">
-                Next
-            </button>
-        </div>
+    <div class="mt-6 flex items-center justify-between">
+      <button id="prevBtn" class="px-4 py-2 rounded-xl border border-slate-600 bg-slate-700 hover:bg-slate-600 disabled:opacity-50 disabled:pointer-events-none">Previous</button>
+      <div id="pageInfo" class="text-sm text-slate-400"></div>
+      <button id="nextBtn" class="px-4 py-2 rounded-xl border border-slate-600 bg-slate-700 hover:bg-slate-600 disabled:opacity-50 disabled:pointer-events-none">Next</button>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const pages = document.querySelectorAll('.page');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            const pageIndicator = document.getElementById('page-indicator');
-            let currentPage = 0;
-            
-            // Function to update page visibility and button states
-            function updatePage() {
-                // Hide all pages
-                pages.forEach(page => page.classList.remove('active'));
-                
-                // Show current page
-                pages[currentPage].classList.add('active');
-                
-                // Update page indicator
-                pageIndicator.textContent = `Page ${currentPage + 1} of ${pages.length}`;
-                
-                // Update button states
-                prevBtn.disabled = currentPage === 0;
-                nextBtn.disabled = currentPage === pages.length - 1;
-                
-                // Style adjustments for disabled state
-                if (prevBtn.disabled) {
-                    prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
-                    prevBtn.classList.remove('hover:bg-gray-400');
-                } else {
-                    prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-                    prevBtn.classList.add('hover:bg-gray-400');
+    <section class="mt-8">
+      <div class="glass rounded-2xl border border-slate-700 p-4">
+        <h2 class="text-lg font-semibold mb-2">Subject Summary</h2>
+        <div id="summary" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="fixed bottom-0 inset-x-0 bg-slate-900/90 backdrop-blur border-t border-slate-700 py-3">
+    <div class="max-w-5xl mx-auto px-4 text-xs sm:text-sm text-slate-400 flex items-center justify-between">
+      <span>Dark Theme • Mobile friendly • Instant feedback</span>
+      <button id="scrollTop" class="px-3 py-1 rounded-lg border border-slate-600 bg-slate-700 hover:bg-slate-600">Top</button>
+    </div>
+  </footer>
+
+<script>
+  // == Questions Data ==
+  const questions = {
+  'general-knowledge': [
+                {
+                    id: 1,
+                    question: "Which among the following is an 'action-at-a-distance' force?",
+                    options: ["Pull", "Friction", "Tension", "Gravitation"],
+                    correct: 3,
+                    explanation: "Gravitation is an action-at-a-distance force because it acts between objects without them being in physical contact. Unlike contact forces like friction or tension, gravitational force can act across empty space."
+                },
+                {
+                    id: 2,
+                    question: "Saltpetre is another name for",
+                    options: ["potassium nitrate", "sodium chloride", "potassium chloride", "sodium hydroxide"],
+                    correct: 0,
+                    explanation: "Saltpetre is the common name for potassium nitrate (KNO₃). It's historically used in gunpowder, fertilizers, and food preservation."
+                },
+                {
+                    id: 3,
+                    question: "In the context of Colonial India, the Hartog Committee Report is related to which field?",
+                    options: ["Health", "Education", "Irrigation", "Urbanisation"],
+                    correct: 1,
+                    explanation: "The Hartog Committee (1929) was appointed to survey the growth of education in British India and made recommendations for educational improvements."
+                },
+                {
+                    id: 4,
+                    question: "In which year did Prince Salim ascend the Mughal throne?",
+                    options: ["1605", "1558", "1625", "1572"],
+                    correct: 0,
+                    explanation: "Prince Salim, who became Emperor Jahangir, ascended the Mughal throne in 1605, eight days after his father Akbar's death."
+                },
+                {
+                    id: 5,
+                    question: "Which of the following cities does NOT lie on the path of river Ganga?",
+                    options: ["Prayagraj", "Patna", "Kanpur", "Lucknow"],
+                    correct: 3,
+                    explanation: "Lucknow is situated on the banks of the Gomti River, not the Ganga. Prayagraj, Patna, and Kanpur are all located along the Ganga."
+                },
+                {
+                    id: 6,
+                    question: "In 1946, who was made the interim president of the Indian Constituent Assembly?",
+                    options: ["Sachchidananda Sinha", "Sachindranath Sanyal", "Sarojini Naidu", "S Subramaniya Iyer"],
+                    correct: 0,
+                    explanation: "Dr. Sachchidananda Sinha was the temporary/interim president of the Constituent Assembly when it first met on December 9, 1946."
+                },
+                {
+                    id: 7,
+                    question: "What are supporting roots coming out of lower ends of the stem of maize and sugarcane called?",
+                    options: ["Stilt Root", "Primary Root", "Prop Root", "Tertiary Root"],
+                    correct: 0,
+                    explanation: "Stilt roots (also called brace roots) arise from the lower nodes of the stem in plants like maize and sugarcane to provide additional support."
+                },
+                {
+                    id: 8,
+                    question: "Who is referred to as the 'Darwin of the 20th Century'?",
+                    options: ["Har Gobind Khorana", "Marshall Warren Nirenberg", "Ernst Mayr", "Katherine Esau"],
+                    correct: 2,
+                    explanation: "Ernst Mayr is often called the 'Darwin of the 20th Century' for his contributions to evolutionary biology and the modern evolutionary synthesis."
+                },
+                {
+                    id: 9,
+                    question: "In which state is the hill station Matheran located?",
+                    options: ["Karnataka", "Tamil Nadu", "Maharashtra", "Madhya Pradesh"],
+                    correct: 2,
+                    explanation: "Matheran is a hill station located in the Raigad district of Maharashtra, about 90 km from Mumbai."
+                },
+                {
+                    id: 10,
+                    question: "What is the chemical symbol of Arsenic?",
+                    options: ["As", "An", "Ac", "Ar"],
+                    correct: 0,
+                    explanation: "The chemical symbol for Arsenic is As. It's a metalloid with atomic number 33 in the periodic table."
+                },
+                {
+                    id: 11,
+                    question: "Which of the following Articles of the Constitution of India abolishes untouchability?",
+                    options: ["20", "17", "18", "19"],
+                    correct: 1,
+                    explanation: "Article 17 of the Indian Constitution abolishes untouchability and its practice in any form is forbidden."
+                },
+                {
+                    id: 12,
+                    question: "Who among the following was the first Portuguese viceroy of India?",
+                    options: ["Alfonso de Albuquerque", "Francisco de Almeida", "Lopo Soares de Albergaria", "Duarte de Menezes"],
+                    correct: 1,
+                    explanation: "Francisco de Almeida was the first Portuguese Viceroy of India, serving from 1505 to 1509."
+                },
+                {
+                    id: 13,
+                    question: "Which of the following subjects is covered in the Eleventh Schedule of the Constitution of India?",
+                    options: ["Health and sanitation", "Major forest produce", "Large scale industries", "Police and public order"],
+                    correct: 0,
+                    explanation: "The Eleventh Schedule contains 29 subjects related to Panchayats, including health and sanitation, education, and rural development."
+                },
+                {
+                    id: 14,
+                    question: "'Euderma maculatum' is the name given to spotted",
+                    options: ["rats", "foxes", "bats", "eagles"],
+                    correct: 2,
+                    explanation: "Euderma maculatum is the scientific name for the spotted bat, found in western North America."
+                },
+                {
+                    id: 15,
+                    question: "The phrase 'Gross National Happiness' was first coined in:",
+                    options: ["New Zealand", "Bhutan", "India", "Sweden"],
+                    correct: 1,
+                    explanation: "Gross National Happiness was first coined by the 4th King of Bhutan, Jigme Singye Wangchuck, in 1972."
+                },
+                {
+                    id: 16,
+                    question: "Which of the following is NOT a fossil fuel?",
+                    options: ["Bitumen", "Asphalt", "Biomass", "Petroleum"],
+                    correct: 2,
+                    explanation: "Biomass is organic matter from living or recently living organisms and is a renewable energy source, not a fossil fuel."
+                },
+                {
+                    id: 17,
+                    question: "The Unique Identification Authority of India (UIDAI) is a statutory authority under the Ministry of",
+                    options: ["Electronics and Information Technology", "Science and Technology", "Communications", "Information and Broadcasting"],
+                    correct: 0,
+                    explanation: "UIDAI operates under the Ministry of Electronics and Information Technology and is responsible for Aadhaar."
+                },
+                {
+                    id: 18,
+                    question: "In which of the following states of India is the 'Ambubachi Mela' held every year?",
+                    options: ["Sikkim", "Kerala", "Assam", "Gujarat"],
+                    correct: 2,
+                    explanation: "Ambubachi Mela is held annually at Kamakhya Temple in Guwahati, Assam, celebrating the menstruation of Goddess Kamakhya."
+                },
+                {
+                    id: 19,
+                    question: "Who wrote the book 'India Wins Freedom'?",
+                    options: ["Mahatma Gandhi", "Vijay Lakshmi Pandit", "Shyama Prasad Mukherjee", "Maulana Abul Kalam Azad"],
+                    correct: 3,
+                    explanation: "'India Wins Freedom' is an autobiographical account by Maulana Abul Kalam Azad about India's freedom struggle."
+                },
+                {
+                    id: 20,
+                    question: "Which of the following terms is associated with the architecture of a Buddhist Stupa?",
+                    options: ["Garbhagriha", "Gopuram", "Harmika", "Mandapam"],
+                    correct: 2,
+                    explanation: "Harmika is a square railing on top of a stupa, symbolizing the abode of the gods. Garbhagriha is associated with Hindu temples."
+                },
+                {
+                    id: 21,
+                    question: "The collections of Vedic hymns or mantras are known as",
+                    options: ["Bali", "Vidatha", "Jnati", "Samhita"],
+                    correct: 3,
+                    explanation: "Samhita refers to the collection of Vedic hymns or mantras. The four Vedas each have their Samhita portions."
+                },
+                {
+                    id: 22,
+                    question: "Iron nails become ______ after being dipped in copper sulphate solution.",
+                    options: ["greyish", "brownish", "bluish", "greenish"],
+                    correct: 1,
+                    explanation: "Iron nails become brownish due to the deposition of copper through displacement reaction when dipped in copper sulphate solution."
+                },
+                {
+                    id: 23,
+                    question: "Which of the following cities is situated along the Coromandel Coast?",
+                    options: ["Vellore", "Tuticorin", "Tirunelveli", "Tiruchirappalli"],
+                    correct: 1,
+                    explanation: "Tuticorin (Thoothukudi) is a port city located on the Coromandel Coast in Tamil Nadu."
+                },
+                {
+                    id: 24,
+                    question: "The steel plant at Bokaro was set up in collaboration with",
+                    options: ["France", "Soviet Union", "Germany", "United Kingdom"],
+                    correct: 1,
+                    explanation: "The Bokaro Steel Plant was established in 1965 with assistance from the Soviet Union."
+                },
+                {
+                    id: 25,
+                    question: "Crocodiles have _____ heart chambers.",
+                    options: ["five", "two", "four", "three"],
+                    correct: 2,
+                    explanation: "Crocodiles have a four-chambered heart, which is unique among reptiles and similar to birds and mammals."
+                },
+                {
+                    id: 26,
+                    question: "Which of the following cities is farthest from the southernmost tip of the mainland of India?",
+                    options: ["Kodaikanal", "Bengaluru", "Nanded", "Warangal"],
+                    correct: 2,
+                    explanation: "Nanded, located in Maharashtra, is the farthest from Kanyakumari, the southernmost tip of mainland India."
+                },
+                {
+                    id: 27,
+                    question: "If an object executes 10 oscillations per second, then its frequency in kilohertz is equal to:",
+                    options: ["0.01", "1", "10", "0.1"],
+                    correct: 0,
+                    explanation: "10 oscillations per second = 10 Hz = 0.01 kHz (since 1 kHz = 1000 Hz)."
+                },
+                {
+                    id: 28,
+                    question: "Which of the following does NOT fall under the category of oilseeds?",
+                    options: ["Groundnut", "Soyabean", "Sesame", "Oats"],
+                    correct: 3,
+                    explanation: "Oats is a cereal grain, not an oilseed. Groundnut, soybean, and sesame are all oilseeds."
+                },
+                {
+                    id: 29,
+                    question: "On the night of _____ 1975, Indira Gandhi recommended the imposition of Emergency to president Fakhruddin Ali Ahmed.",
+                    options: ["22nd May", "1st July", "25th June", "1st June"],
+                    correct: 2,
+                    explanation: "The Emergency was declared on the night of 25th June 1975 and lasted until 21st March 1977."
+                },
+                {
+                    id: 30,
+                    question: "Which of the following barrages/dams is closest to the India-Bangladesh border?",
+                    options: ["Tilaiya", "Durgapur", "Farakka", "Massanjore"],
+                    correct: 2,
+                    explanation: "Farakka Barrage is located on the Ganges River near the India-Bangladesh border in West Bengal."
+                },
+                {
+                    id: 31,
+                    question: "Power exerted by an object moving in a straight line is equal to Force multiplied by",
+                    options: ["Velocity", "Displacement", "Work", "Acceleration"],
+                    correct: 0,
+                    explanation: "Power = Force × Velocity. This gives the rate at which work is done by a moving object."
+                },
+                {
+                    id: 32,
+                    question: "Mehrgarh, a Neolithic settlement, is situated in the _____ province of Pakistan.",
+                    options: ["Sindh", "Punjab", "Balochistan", "Khyber Pakhtunkhwa"],
+                    correct: 2,
+                    explanation: "Mehrgarh is located in Balochistan province of Pakistan and dates back to 7000 BCE."
+                },
+                {
+                    id: 33,
+                    question: "In the context of forest conservation, Navdanya Movement was founded in 1987 by",
+                    options: ["Baba Amte", "Pandurang Hegde", "Medha Patkar", "Vandana Shiva"],
+                    correct: 3,
+                    explanation: "Navdanya Movement was founded by Dr. Vandana Shiva to protect native seeds and promote biodiversity."
+                },
+                {
+                    id: 34,
+                    question: "'Sagarmatha' is the Nepali name for:",
+                    options: ["Mount Everest", "Lhotse", "Makalu", "Kanchenjunga"],
+                    correct: 0,
+                    explanation: "Sagarmatha is the Nepali name for Mount Everest, meaning 'Peak of Heaven'."
+                },
+                {
+                    id: 35,
+                    question: "The famous caves of Udayagiri and Khandagiri are located in:",
+                    options: ["Uttarakhand", "Odisha", "Tripura", "Chhattisgarh"],
+                    correct: 1,
+                    explanation: "Udayagiri and Khandagiri caves are ancient Jain rock-cut caves located near Bhubaneswar, Odisha."
+                },
+                {
+                    id: 36,
+                    question: "Small Industries Development Bank of India (SIDBI) is regulated by",
+                    options: ["Indian Bank", "Reserve Bank of India", "ICICI Bank", "State Bank of India"],
+                    correct: 1,
+                    explanation: "SIDBI is regulated by the Reserve Bank of India and focuses on development of micro, small and medium enterprises."
+                },
+                {
+                    id: 37,
+                    question: "In which Indian state is the Pattadakal dance festival organized?",
+                    options: ["Assam", "Manipur", "Karnataka", "Jharkhand"],
+                    correct: 2,
+                    explanation: "Pattadakal dance festival is held at the UNESCO World Heritage site of Pattadakal in Karnataka."
+                },
+                {
+                    id: 38,
+                    question: "As per the Preamble of the Constitution of India, India is a/an",
+                    options: ["oligarchy", "monarchy", "republic", "aristocracy"],
+                    correct: 2,
+                    explanation: "The Preamble declares India as a sovereign, socialist, secular, democratic republic."
+                },
+                {
+                    id: 39,
+                    question: "Which of the following universities was founded by Kumaragupta, the ruler of the Gupta dynasty?",
+                    options: ["Delhi University", "Nalanda University", "Pune University", "Taxila University"],
+                    correct: 1,
+                    explanation: "Nalanda University was founded by Kumaragupta I in the 5th century CE during the Gupta period."
+                },
+                {
+                    id: 40,
+                    question: "Manika Batra is associated with which sport?",
+                    options: ["Wrestling", "Badminton", "Boxing", "Table Tennis"],
+                    correct: 3,
+                    explanation: "Manika Batra is an Indian table tennis player and Commonwealth Games gold medalist."
+                },
+                {
+                    id: 41,
+                    question: "According to the Constitution of India, there shall be a Comptroller and Auditor General of India who shall be appointed by the",
+                    options: ["Prime Minister of India", "Attorney General of India", "President of India", "Chief Justice of India"],
+                    correct: 2,
+                    explanation: "The CAG is appointed by the President of India under Article 148 of the Constitution."
+                },
+                {
+                    id: 42,
+                    question: "Khajuraho temple in Madhya Pradesh is an example of _____ style of temple architecture.",
+                    options: ["Dravida", "Vesara", "Nagara", "Hoysala"],
+                    correct: 2,
+                    explanation: "Khajuraho temples are excellent examples of Nagara style of North Indian temple architecture."
+                },
+                {
+                    id: 43,
+                    question: "When a cell divides by meiosis it produces _____ new cells.",
+                    options: ["4", "2", "3", "5"],
+                    correct: 0,
+                    explanation: "Meiosis results in four daughter cells, each with half the number of chromosomes as the parent cell."
+                },
+                {
+                    id: 44,
+                    question: "_____ is the largest tropical rainforest in the world.",
+                    options: ["Sahara", "Amazon", "Congo region", "Prairie"],
+                    correct: 1,
+                    explanation: "The Amazon rainforest is the world's largest tropical rainforest, covering much of the Amazon basin in South America."
+                },
+                {
+                    id: 45,
+                    question: "What was the original name of Swami Vivekananda?",
+                    options: ["Mula Sankara", "Narendranath Datta", "Vardhamana", "Nrusimha Bhan"],
+                    correct: 1,
+                    explanation: "Swami Vivekananda was born as Narendranath Datta in 1863 in Calcutta."
+                },
+                {
+                    id: 46,
+                    question: "Limestone, chalk and marble are different forms of",
+                    options: ["calcium carbonate", "sodium carbonate", "potassium carbonate", "magnesium carbonate"],
+                    correct: 0,
+                    explanation: "Limestone, chalk, and marble are all forms of calcium carbonate (CaCO₃) with different crystal structures."
+                },
+                {
+                    id: 47,
+                    question: "Which of the following states has the highest reserves of haematite ore in India?",
+                    options: ["Rajasthan", "Tamil Nadu", "Maharashtra", "Odisha"],
+                    correct: 3,
+                    explanation: "Odisha has the largest reserves of haematite iron ore in India, particularly in the districts of Keonjhar and Mayurbhanj."
+                },
+                {
+                    id: 48,
+                    question: "'Wings of Fire' is a famous autobiography of which Indian scientist?",
+                    options: ["Homi J Bhabha", "CV Raman", "APJ Abdul Kalam", "Vikram Sarabhai"],
+                    correct: 2,
+                    explanation: "'Wings of Fire' is the autobiography of Dr. APJ Abdul Kalam, former President of India and renowned scientist."
+                },
+                {
+                    id: 49,
+                    question: "In its longitudinal extent, the Himalaya consists of _____ parallel ranges.",
+                    options: ["three", "five", "four", "two"],
+                    correct: 0,
+                    explanation: "The Himalayas consist of three parallel ranges: the Greater Himalayas, Lesser Himalayas, and Outer Himalayas (Shivaliks)."
+                },
+                {
+                    id: 50,
+                    question: "Pulakesin I was the founder of _____ dynasty of South India.",
+                    options: ["Chera", "Pandya", "Chalukya", "Chola"],
+                    correct: 2,
+explanation: "Pulakesin I founded the Chalukya dynasty of Badami in the 6th century CE in South India."
+                },
+                {
+                    id: 51,
+                    question: "Which of the following cell organelles help to keep the cell clean by digesting any foreign material as well as worn-out cell organelles?",
+                    options: ["Mitochondria", "Ribosome", "Lysosome", "Vacuole"],
+                    correct: 2,
+                    explanation: "Lysosomes are known as the 'suicide bags' of the cell, containing digestive enzymes that break down waste materials."
+                },
+                {
+                    id: 52,
+                    question: "The number of live births per thousand persons in a year is called",
+                    options: ["growth rate", "fertility rate", "death rate", "birth rate"],
+                    correct: 3,
+                    explanation: "Birth rate is defined as the number of live births per 1,000 people in a population per year."
+                },
+                {
+                    id: 53,
+                    question: "Mangal Pandey was hanged to death for attacking British officers in Barrackpore on",
+                    options: ["21 March, 1857", "23 March, 1857", "31 March, 1857", "29 March, 1857"],
+                    correct: 3,
+                    explanation: "Mangal Pandey was executed on 29 March 1857, his rebellion marking the beginning of the 1857 uprising."
+                },
+                {
+                    id: 54,
+                    question: "Which famous Rashtrakuta king built the rock-cut temple of Kailash at Ellora?",
+                    options: ["Bhoja", "Govinda II", "Rashtrakuta King Krishna I", "Jai Chand"],
+                    correct: 2,
+                    explanation: "Krishna I of the Rashtrakuta dynasty commissioned the magnificent Kailash temple at Ellora in the 8th century CE."
+                },
+                {
+                    id: 55,
+                    question: "Commercial banks keep their deposits with RBI. These deposits are called",
+                    options: ["liability", "loans", "inheritance", "reserves"],
+                    correct: 3,
+                    explanation: "Commercial banks maintain reserves with the RBI as part of Cash Reserve Ratio (CRR) requirements."
+                },
+                {
+                    id: 56,
+                    question: "The popular style of temple architecture in northern India is called",
+                    options: ["Panchayatana", "Nagara", "Shikara", "Dravida"],
+                    correct: 1,
+                    explanation: "Nagara style is the North Indian temple architecture style, characterized by beehive-shaped towers (shikhara)."
+                },
+                {
+                    id: 57,
+                    question: "Which of the following statements is INCORRECT?",
+                    options: ["Electric charge is a scalar quantity", "Protons are positively charged", "Electrons are negatively charged", "Electric charge is a vector quantity"],
+                    correct: 3,
+                    explanation: "Electric charge is a scalar quantity, not a vector. It has magnitude but no direction."
+                },
+                {
+                    id: 58,
+                    question: "In which year did the Mughal Emperor Shah Alam II appoint the East India Company as the Diwan of Bengal?",
+                    options: ["1758", "1755", "1760", "1765"],
+                    correct: 3,
+                    explanation: "Shah Alam II appointed the East India Company as Diwan of Bengal in 1765 through the Treaty of Allahabad."
+                },
+                {
+                    id: 59,
+                    question: "The Sattriya dance has developed from the monasteries of:",
+                    options: ["West Bengal", "Ladakh", "Assam", "Tripura"],
+                    correct: 2,
+                    explanation: "Sattriya is a classical dance form that originated in the monasteries (Sattras) of Assam, introduced by Srimanta Sankardev."
+                },
+                {
+                    id: 60,
+                    question: "Which of the following is NOT a reason for slowing down of the Non-cooperation Movement?",
+                    options: [
+                        "Due to the absence of alternative Indian institution, boycott of British institutions posed a problem",
+                        "Leaders of the movement shifted their focus towards domestic work thus created a void",
+                        "Many lawyers resigned but then absence of income for a longer period of time compelled them to rejoin",
+                        "Khadi cloth was often more expensive than mass-produced mill cloth and poor people could not afford to buy it"
+                    ],
+                    correct: 1,
+                    explanation: "The leaders did not shift focus to domestic work. The movement slowed due to practical difficulties like expensive khadi and lack of alternative institutions."
+                }
+            ],
+            'nagaland-gk': [
+                {
+                    id: 61,
+                    question: "Which among the following Indian states do not share its boundary with Nagaland?",
+                    options: ["Arunachal Pradesh", "Manipur", "Meghalaya", "All of the above"],
+                    correct: 2,
+                    explanation: "Meghalaya does not share a boundary with Nagaland. Nagaland shares boundaries with Arunachal Pradesh, Assam, Manipur, and Myanmar."
+                },
+                {
+                    id: 62,
+                    question: "What is the total number of districts in Nagaland?",
+                    options: ["7", "11", "13", "16"],
+                    correct: 3,
+                    explanation: "Nagaland currently has 16 districts after recent administrative reorganizations."
+                },
+                {
+                    id: 63,
+                    question: "The jurisdiction of Gauhati High Court is not extended to",
+                    options: ["Arunachal Pradesh", "Nagaland", "Mizoram", "Meghalaya"],
+                    correct: 2,
+                    explanation: "Mizoram has its own High Court. Gauhati High Court has jurisdiction over Assam, Nagaland, Arunachal Pradesh, and Mizoram."
+                },
+                {
+                    id: 64,
+                    question: "The Nagaland State Museum was established on",
+                    options: ["1 November, 1963", "25 November, 1963", "1 November, 1970", "25 November, 1970"],
+                    correct: 3,
+                    explanation: "The Nagaland State Museum was established on 25 November 1970 in Kohima."
+                },
+                {
+                    id: 65,
+                    question: "Kene or Naga wrestling is closely related to Ssireum, the traditional national sport of",
+                    options: ["Japan", "Indonesia", "Korea", "Myanmar"],
+                    correct: 2,
+                    explanation: "Ssireum is the traditional wrestling sport of Korea, and Naga wrestling shares similarities with it."
+                },
+                {
+                    id: 66,
+                    question: "The first modern newspaper from present-day Nagaland was",
+                    options: ["Kewhira Dielie", "Nagaland Post", "Eastern Mirror", "The Morung Express"],
+                    correct: 0,
+                    explanation: "Kewhira Dielie was the first modern newspaper from Nagaland region."
+                },
+                {
+                    id: 67,
+                    question: "The first state among the North Eastern States of India to be on-boarded in the National Single Window System (NSWS) is",
+                    options: ["Arunachal Pradesh", "Assam", "Nagaland", "Tripura"],
+                    correct: 2,
+                    explanation: "Nagaland was the first North Eastern state to be integrated with the National Single Window System for investment approvals."
+                },
+                {
+                    id: 68,
+                    question: "Mount Saramati known as the 'Crown of Nagaland' is located in",
+                    options: ["Kiphire District", "Noklak District", "Phek District", "Kohima District"],
+                    correct: 0,
+                    explanation: "Mount Saramati, the highest peak in Nagaland, is located in Kiphire District on the India-Myanmar border."
+                },
+                {
+                    id: 69,
+                    question: "Lake Shilloi, the largest natural lake in Nagaland is located in",
+                    options: ["Phek District", "Peren District", "Tuensang District", "Niuland District"],
+                    correct: 0,
+                    explanation: "Lake Shilloi, Nagaland's largest natural lake, is located in Phek District."
+                },
+                {
+                    id: 70,
+                    question: "The state bird of Nagaland is",
+                    options: ["Blyth's tragopan", "Naga Wren Babbler", "Moustached Laughingthrush", "Dark-rumped Swift"],
+                    correct: 0,
+                    explanation: "Blyth's tragopan is the state bird of Nagaland, a colorful pheasant found in the state's forests."
+                },
+                {
+                    id: 71,
+                    question: "Salhoutuonuo Kruse in 2023 became first woman from Nagaland to be elected to the Nagaland Legislative Assembly. She belonged to which constituency?",
+                    options: ["Western Angami", "Northern Angami", "Pughoboto", "Chozuba"],
+                    correct: 0,
+                    explanation: "Salhoutuonuo Kruse was elected from the Western Angami constituency in 2023."
+                },
+                {
+                    id: 72,
+                    question: "The first female physician practicing Western medicine among the Nagas was",
+                    options: ["Khrielie-u Kire", "Neidonuo Angami", "Easterine Kire", "None of the above"],
+                    correct: 0,
+                    explanation: "Dr. Khrielie-u Kire was the first female physician practicing Western medicine among the Nagas."
+                },
+                {
+                    id: 73,
+                    question: "United Kingdom-based Commonwealth War Graves Commission (CWGC) has listed five sites associated with World War I and World War II, which of the following is not one of them?",
+                    options: ["Kohima War Cemetery", "Zivy Crater", "Litchfield Crater", "Anzio War Cemetery"],
+                    correct: 3,
+                    explanation: "Anzio War Cemetery is in Italy, not in Nagaland. The others are WWII sites in Nagaland."
+                },
+                {
+                    id: 74,
+                    question: "Chega Gadi is popular festival of",
+                    options: ["Chakhesang", "Zeliang", "Khiamniungan", "Konyak"],
+                    correct: 1,
+                    explanation: "Chega Gadi is a popular festival celebrated by the Zeliang tribe of Nagaland."
+                },
+                {
+                    id: 75,
+                    question: "Tsukhenyie and Sukrenyi are the major festivals of",
+                    options: ["Chakhesang Naga", "Chang Naga", "Aos", "Angamis"],
+                    correct: 0,
+                    explanation: "Tsukhenyie and Sukrenyi are major festivals celebrated by the Chakhesang Naga tribe."
+                }
+            ],
+            'computer': [
+                {
+                    id: 131,
+                    question: "What is the full form of OSI?",
+                    options: ["Open Software Interrelation", "Open System Interrelation", "Open Software Interconnection", "Open System Interconnection"],
+                    correct: 3,
+                    explanation: "OSI stands for Open System Interconnection, a conceptual framework for network communication in seven layers."
+                },
+                {
+                    id: 132,
+                    question: "The metal or plastic case that houses the physical components of a computer together is called the",
+                    options: ["Central Processing Unit", "Storage device", "Motherboard", "System unit"],
+                    correct: 3,
+                    explanation: "The system unit (also called computer case) houses all the main components of a computer."
+                },
+                {
+                    id: 133,
+                    question: "Which of the following is not a computer programming language?",
+                    options: ["C", "C++", "FORTRAN", "Windows"],
+                    correct: 3,
+                    explanation: "Windows is an operating system, not a programming language."
+                },
+                {
+                    id: 134,
+                    question: "One security method is encryption. But encryption does nothing to keep digital pests and hackers out. To accomplish this goal, we need",
+                    options: ["Router", "Bridges", "Hubs", "Firewalls"],
+                    correct: 3,
+                    explanation: "Firewalls act as barriers to prevent unauthorized access to computer networks."
+                },
+                {
+                    id: 135,
+                    question: "Firewalls are used to protect against",
+                    options: ["Unauthorized attacks", "Virus attacks", "Data-driven attacks", "Fire attacks"],
+                    correct: 0,
+                    explanation: "Firewalls primarily protect against unauthorized access and attacks."
+                },
+                {
+                    id: 136,
+                    question: "Which of the following is not a storage device?",
+                    options: ["Hard Disk", "CD", "Floppy Disk", "None of the above"],
+                    correct: 3,
+                    explanation: "All listed items (Hard Disk, CD, Floppy Disk) are storage devices."
+                },
+                {
+                    id: 137,
+                    question: "Which of the following performs modulation and demodulation of signal?",
+                    options: ["Amplifier", "Satellite", "Coaxial cable", "Modem"],
+                    correct: 3,
+                    explanation: "Modem stands for Modulator-Demodulator and converts digital signals to analog and vice versa."
+                },
+                {
+                    id: 138,
+                    question: "Which of the following are components of Central Processing Unit (CPU)?",
+                    options: ["Arithmetic logic unit, Mouse", "Arithmetic logic unit, Control unit", "Arithmetic logic unit, Integrated Circuits", "Control Unit, Monitor"],
+                    correct: 1,
+                    explanation: "The CPU consists of the Arithmetic Logic Unit (ALU) and Control Unit."
+                },
+                {
+                    id: 139,
+                    question: "What does CAD stand for?",
+                    options: ["Computer aided design", "Computer algorithm for design", "Computer application in design", "Computer Assistant Dialing"],
+                    correct: 0,
+                    explanation: "CAD stands for Computer-Aided Design, used for creating technical drawings and 3D models."
+                },
+                {
+                    id: 140,
+                    question: "Which of the following places the common data elements in order from smallest to largest?",
+                    options: ["Character, field, record, file, database", "Character, record, file, field, database", "Character, record, file, database, field", "Field, file, record, character, database"],
+                    correct: 0,
+                    explanation: "The correct hierarchy is: Character → Field → Record → File → Database."
+                },
+                {
+                    id: 141,
+                    question: "What is the default file extension for all Word documents?",
+                    options: [".doc", ".exe", ".csv", ".pnd"],
+                    correct: 0,
+                    explanation: ".doc (or .docx for newer versions) is the default extension for Microsoft Word documents."
+                },
+                {
+                    id: 142,
+                    question: "How will MS Word respond to a repeated word?",
+                    options: ["A Red wavy line under the repeated word", "A Green wavy line under the repeated word", "First word with blue wavy line", "A Blue wavy line under the repeated word"],
+                    correct: 0,
+                    explanation: "MS Word shows a red wavy underline for repeated words to indicate potential errors."
+                },
+                {
+                    id: 143,
+                    question: "A term associated with the comparison of processing speeds of different computer system is",
+                    options: ["EFTS", "MPG", "MIPS", "CFPS"],
+                    correct: 2,
+                    explanation: "MIPS stands for Million Instructions Per Second, used to measure computer processing speed."
+                },
+                {
+                    id: 144,
+                    question: "Internet uses",
+                    options: ["Packet switching", "Circuit switching", "Telephone switching", "Telex switching"],
+                    correct: 0,
+                    explanation: "The Internet uses packet switching to transmit data in small packets across networks."
+                },
+                {
+                    id: 145,
+                    question: "Which of the following is an input device?",
+                    options: ["Monitor", "Speaker", "Printer", "Keyboard"],
+                    correct: 3,
+                    explanation: "Keyboard is an input device. Monitor, speaker, and printer are output devices."
+                },
+                {
+                    id: 146,
+                    question: "Which computer memory is used for storing programs and data currently being processed by the CPU?",
+                    options: ["Mass memory", "Internal memory", "Non-volatile memory", "PROM"],
+                    correct: 1,
+                    explanation: "Internal memory (RAM) stores programs and data currently being processed by the CPU."
+                },
+                {
+                    id: 147,
+                    question: "A device that copies or reproduces text and images is also called",
+                    options: ["Optical Scanner", "Bar Code Reader", "Character Device", "Digital Camera"],
+                    correct: 0,
+                    explanation: "An optical scanner is a device that copies or reproduces text and images digitally."
+                },
+                {
+                    id: 148,
+                    question: "The prefix that stands for 'billionth' is",
+                    options: ["Giga", "Tera", "Nano", "Peta"],
+                    correct: 2,
+                    explanation: "Nano is the prefix for one billionth (10^-9). Giga is billion, not billionth."
+                },
+                {
+                    id: 149,
+                    question: "Which of the following is not a computer network?",
+                    options: ["LAN", "WAN", "MAN", "None of the above"],
+                    correct: 3,
+                    explanation: "LAN, WAN, and MAN are all types of computer networks."
+                },
+                {
+                    id: 150,
+                    question: "What is the full form of UTP?",
+                    options: ["Unshielded Twisted Pair", "Universal Transmission Path", "User Time Precision", "Unified Transmission Protocol"],
+                    correct: 0,
+                    explanation: "UTP stands for Unshielded Twisted Pair, a type of network cable."
+                },
+                {
+                    id: 151,
+                    question: "Servers are computers that provide resources to other computers connected to a",
+                    options: ["Network", "Mainframe", "Supercomputer", "Client"],
+                    correct: 0,
+                    explanation: "Servers provide resources to other computers (clients) connected to a network."
+                },
+                {
+                    id: 152,
+                    question: "Artificial Intelligence is",
+                    options: [
+                        "the science that attempts to produce machines that display the same type of intelligence that humans do",
+                        "the manipulation of matter on an atomic, molecular, and supramolecular scale",
+                        "the imitation of the operation of a real-world process or system over time",
+                        "the method of storing and transmitting data in a particular form so that only those for whom it is intended can read and process it"
+                    ],
+                    correct: 0,
+                    explanation: "AI is the science of creating machines that can perform tasks requiring human-like intelligence."
+                },
+                {
+                    id: 153,
+                    question: "The Operating system",
+                    options: [
+                        "controls the way in which the computer system functions and provides a means by which users can interact with the computer",
+                        "is an underlying computer system on which application programs can run",
+                        "is the main circuit board of the computer",
+                        "employs the capabilities of a computer directly and thoroughly to a task that the user wishes to perform"
+                    ],
+                    correct: 0,
+                    explanation: "The operating system manages computer hardware and software resources and provides user interface."
+                },
+                {
+                    id: 154,
+                    question: "The data on a floppy disk is recorded in rings called",
+                    options: ["Sectors", "Ringers", "Segments", "Tracks"],
+                    correct: 3,
+                    explanation: "Data on floppy disks is recorded in concentric rings called tracks."
+                },
+                {
+                    id: 155,
+                    question: "A pictogram displayed on a computer screen in order to help the user navigate a computer system is called",
+                    options: ["Icon", "Thumbnail", "New folder", "Symbol"],
+                    correct: 0,
+                    explanation: "Icons are pictorial representations used for navigation and identification in computer interfaces."
+                },
+                {
+                    id: 156,
+                    question: "Byte is",
+                    options: ["1 bit", "10 bits", "100 bits", "8 bits"],
+                    correct: 3,
+                    explanation: "A byte consists of 8 bits and is the basic unit of computer memory."
+                },
+                {
+                    id: 157,
+                    question: "The Internet began with the development of",
+                    options: ["USENET", "ARPANET", "Ethernet", "Intranet"],
+                    correct: 1,
+                    explanation: "ARPANET, developed in 1969, was the precursor to the modern Internet."
+                },
+                {
+                    id: 158,
+                    question: "What does USB stand for?",
+                    options: ["Universal Serial Bus", "Unified Speed Bond", "Universal Speed Bus", "Unified Serial Bond"],
+                    correct: 0,
+                    explanation: "USB stands for Universal Serial Bus, a standard for computer peripherals."
+                },
+                {
+                    id: 159,
+                    question: "In a spreadsheet, a cell is defined as",
+                    options: ["Rectangular box", "Row only", "Column only", "Intersection of row and column"],
+                    correct: 3,
+                    explanation: "A cell in a spreadsheet is the intersection point of a row and column."
+                },
+                {
+                    id: 160,
+                    question: "Portrait and Landscape are",
+                    options: ["Page Orientation", "Paper Size", "Page Layout", "Both 1 and 3"],
+                    correct: 0,
+                    explanation: "Portrait and Landscape are types of page orientation in document formatting."
+                },
+                {
+                    id: 161,
+                    question: "One millionth is equal to",
+                    options: ["Nano", "Micro", "Pico", "Meso"],
+                    correct: 1,
+                    explanation: "Micro represents one millionth (10^-6). Nano is one billionth."
+                },
+                {
+                    id: 162,
+                    question: "Ctrl + X is used for",
+                    options: ["Copy", "Insert", "Cut", "Paste"],
+                    correct: 2,
+                    explanation: "Ctrl+X is the keyboard shortcut for Cut operation in most applications."
+                },
+                {
+                    id: 163,
+                    question: "In windows, by default the files when deleted are sent to",
+                    options: ["Trash", "Recycle Bin", "Control Panel", "Cache"],
+                    correct: 1,
+                    explanation: "In Windows, deleted files are moved to the Recycle Bin by default."
+                },
+                {
+                    id: 164,
+                    question: "To combine two or more cells into a single cell is called",
+                    options: ["Splitting", "Joining", "Sharing", "Merging"],
+                    correct: 3,
+                    explanation: "Merging combines multiple cells into a single cell in spreadsheets and tables."
+                },
+                {
+                    id: 165,
+                    question: "_____ is the process of implementing command.",
+                    options: ["Storing", "Decoding", "Fetching", "Executing"],
+                    correct: 3,
+                    explanation: "Executing is the process of implementing or carrying out a command."
+                },
+                {
+                    id: 166,
+                    question: "A _____ contains buttons and menus that provide quick access to commonly used commands.",
+                    options: ["Menu bar", "Toolbar", "Window", "Action bar"],
+                    correct: 1,
+                    explanation: "A toolbar contains buttons and icons for quick access to frequently used commands."
+                },
+                {
+                    id: 167,
+                    question: "When sending an email, the _____ line describes the contents of the message.",
+                    options: ["Subject", "Content", "Spam", "CC"],
+                    correct: 0,
+                    explanation: "The Subject line in an email briefly describes the message content."
+                },
+                {
+                    id: 168,
+                    question: "The ALU performs _____ operations.",
+                    options: ["Arithmetic", "ASCII", "Logarithm based", "Algorithm based"],
+                    correct: 0,
+                    explanation: "The Arithmetic Logic Unit (ALU) performs arithmetic and logical operations."
+                },
+                {
+                    id: 169,
+                    question: "Information kept about a file includes",
+                    options: ["Print settings", "Deletion date", "Size", "Creation date"],
+                    correct: 2,
+                    explanation: "File information typically includes size, creation date, modification date, and other metadata."
+                },
+                {
+                    id: 170,
+                    question: "What is the term for unsolicited mail?",
+                    options: ["User mail", "Backbone", "Spoof", "Spam"],
+                    correct: 3,
+                    explanation: "Spam refers to unsolicited, unwanted email messages sent in bulk."
+                }
+            ],
+            'arithmetic': [
+                {
+                    id: 171,
+                    question: "If the length of one side of a rectangle is twice that of the other side, and its perimeter is 54 cm, then what is the length of the longer side of this rectangle?",
+                    options: ["14 cm", "9 cm", "27 cm", "18 cm"],
+                    correct: 3
+                },
+                {
+                    id: 172,
+                    question: "A sum of money, invested at a certain rate of simple interest per annum, amounts to Rs. 720 in 4 years and to Rs. 800 in 5 years. The sum invested is:",
+                    options: ["Rs. 400", "Rs. 600", "Rs. 500", "Rs. 360"],
+                    correct: 0
+                },
+                {
+                    id: 173,
+                    question: "What is the average of the percentage increase in the year-to-year profit of Company M over all the given years? [Based on graph data]",
+                    options: ["24%", "20%", "25%", "21%"],
+                    correct: 3
+                },
+                {
+                    id: 174,
+                    question: "Find the amount payable on maturity if Rs. 20,00,000 is invested at 12% per annum for 20 years and interest is compounded half-yearly.",
+                    options: ["Rs. 23,00,832", "Rs. 23,82,032", "Rs. 24,00,000", "Rs. 23,00,000"],
+                    correct: 1
+                },
+                {
+                    id: 175,
+                    question: "What is the central angle showing the shares of the marks in Hindi and Social Science, taken together? [Based on pie chart]",
+                    options: ["186°", "196°", "144°", "172°"],
+                    correct: 2
+                },
+                {
+                    id: 176,
+                    question: "A train can cross a 1200-metre-long bridge completely in 16 seconds. It can cross a 1600-metre-long bridge completely in 20 seconds. What is the speed of the train?",
+                    options: ["360 km/h", "450 km/h", "540 km/h", "270 km/h"],
+                    correct: 0
+                },
+                {
+                    id: 177,
+                    question: "There are 45 students in a hostel. If the number of students increases by 5, the total expenses increase by Rs. 30 per day while average daily expenditure per head diminishes by Rs. 2. Find original total daily expenditure.",
+                    options: ["Rs. 1,170", "Rs. 1,710", "Rs. 1,200", "Rs. 1,250"],
+                    correct: 0
+                },
+                {
+                    id: 178,
+                    question: "A person uses a rectangular metallic sheet of 45 m x 30 m for making an open box. From each corner he cuts off a square of side 10 m. What will be the volume of the box (in m³)?",
+                    options: ["5000", "4500", "7000", "2500"],
+                    correct: 3
+                },
+                {
+                    id: 179,
+                    question: "In a class, the average weight of 4 boys is 50 kg and the average weight of 4 girls is 40 kg. What is the average weight of all 8 students taken together?",
+                    options: ["44 kg", "48 kg", "45 kg", "42 kg"],
+                    correct: 2
+                },
+                {
+                    id: 180,
+                    question: "What is the total number of views for all songs by 6 singers? [Based on table data: S1-S3 avg 100 views/song, S4-S6 avg 50 views/song]",
+                    options: ["8500", "9000", "9500", "8000"],
+                    correct: 1
+                },
+                {
+                    id: 181,
+                    question: "A man walks at 6m/sec and reaches his destination in 20 minutes. A woman covers the same distance in 1.2 hours. What is the speed of the woman (in km/h)?",
+                    options: ["6", "2", "5", "1"],
+                    correct: 0
+                },
+                {
+                    id: 182,
+                    question: "The price of onion increases by 12.5%. The consumption also increases by 12.5%. What is the approximate percentage increase in expenditure?",
+                    options: ["29.12%", "24.82%", "28.44%", "26.56%"],
+                    correct: 3
+                },
+                {
+                    id: 183,
+                    question: "Person X buys a saree for Rs. 100, sells to Y at 10% profit. Y sells to Z at 10% loss. How much does Z pay?",
+                    options: ["Rs. 100", "Rs. 99", "Rs. 101", "Rs. 90"],
+                    correct: 1
+                },
+                {
+                    id: 184,
+                    question: "The value of (822 + 18 × 26) ÷ 16 is:",
+                    options: ["451.8", "444.3", "449.5", "447.1"],
+                    correct: 2
+                },
+                {
+                    id: 185,
+                    question: "The length and breadth of a rectangle are increased by 15% and 10%, respectively. What is the percentage increase in the area of the rectangle?",
+                    options: ["25%", "26.5%", "27.5%", "26%"],
+                    correct: 1
+                },
+                {
+                    id: 186,
+                    question: "In a certain code language, 'he is sick' is written as 'blue red pink', 'he wants apple' is written as 'green violet red', and 'apple is tasty' is written as 'blue green yellow'. How will 'tasty' be written?",
+                    options: ["Violet", "Blue", "Yellow", "Pink"],
+                    correct: 2
+                },
+                {
+                    id: 187,
+                    question: "Which two numbers need to be interchanged to make the following equation correct? 22 - 9 + 5 ÷ 10 × 1 = 29",
+                    options: ["22 and 10", "5 and 1", "10 and 9", "5 and 10"],
+                    correct: 2
+                },
+                {
+                    id: 188,
+                    question: "Select the number from the given options that can replace the question mark (?) in the following series: 137, 125, 113, 101, ?",
+                    options: ["87", "84", "86", "89"],
+                    correct: 3
+                },
+                {
+                    id: 189,
+                    question: "Select the option that is related to the fifth term in the same way as the second term is related to the first term: ABC2: ZYX7:: PQR21: KJI26:: MNO11:?",
+                    options: ["NML16", "KLM14", "NLM14", "MKL16"],
+                    correct: 0
+                },
+                {
+                    id: 190,
+                    question: "Four girls A, B, C, D sitting in a row facing south, four boys P, Q, R, S facing them. P and C are diagonally opposite. A is second to right of C. S is immediate neighbor of Q and R. C is facing R. Which pair is definitely facing each other?",
+                    options: ["DP", "BS", "AQ", "DS"],
+                    correct: 2
+                },
+                {
+                    id: 191,
+                    question: "Select the letter-cluster that can replace the question mark (?) in the following series: AY, BX, ?, DV, EU, FT",
+                    options: ["CV", "CW", "CE", "CU"],
+                    correct: 1
+                },
+                {
+                    id: 192,
+                    question: "Select the option that is related to the fifth number in the same way as the second number is related to the first number: 347: 14 :: 122: 5 :: 244: ?",
+                    options: ["12", "10", "8", "14"],
+                    correct: 1
+                },
+                {
+                    id: 193,
+                    question: "Identify the number that does NOT belong to the following series: 414, 430, 462, 526, 664, 910",
+                    options: ["462", "526", "910", "664"],
+                    correct: 3
+                },
+                {
+                    id: 194,
+                    question: "Select the figure from the given options that can replace the question mark (?) in the following series. [Visual pattern question]",
+                    options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+                    correct: 1
+                },
+                {
+                    id: 195,
+                    question: "P1, P2, P3, P4, P5, P6 and P7 are getting different profit. P1 gets more than P5 but less than P3. P6 gets profit less than only two people. P4 gets lowest. P2 gets less than P1. P7 gets highest. Who gets third highest profit?",
+                    options: ["P1", "P6", "P3", "P2"],
+                    correct: 1
+                },
+                {
+                    id: 196,
+                    question: "In a certain code language, 'Heat is waves' is coded as '7 6 @', and 'waves are dramatic not' is coded as '3 4 % 7'. What can be the code for 'Heat' in that language?",
+                    options: ["%", "4", "@", "3"],
+                    correct: 2
+                },
+                {
+                    id: 197,
+                    question: "Five professors A, B, C, D and E are sitting in a row facing North. A is second to the left of D. Only two professors are sitting between C and E. No professor is sitting to the right of E. How many professors are sitting to the left of D?",
+                    options: ["3", "0", "2", "1"],
+                    correct: 2
+                },
+                {
+                    id: 198,
+                    question: "Select the option in which the numbers are related in the same way as are the numbers of the following sets: (8, 12, 48), (6, 18, 54)",
+                    options: ["(6, 12, 48)", "(4, 8, 12)", "(6, 8, 30)", "(4, 8, 16)"],
+                    correct: 3
+                },
+                {
+                    id: 199,
+                    question: "Read the statements and conclusions. Statements: I. No R is S. II. All X are R. Conclusions: I. Some R are X. II. Some S are X. III. All X are S.",
+                    options: ["Only conclusion III follows", "Only conclusion I follows", "None of the conclusions follow", "Only conclusion II follows"],
+                    correct: 1
+                },
+                {
+                    id: 200,
+                    question: "Select the option that is related to the third letter-cluster in the same way as the second letter-cluster is related to the first letter-cluster: PRA: SUZ :: GOS: ?",
+                    options: ["JRU", "JSU", "JRH", "JSH"],
+                    correct: 2
                 }
-                
-                if (nextBtn.disabled) {
-                    nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
-                    nextBtn.classList.remove('hover:bg-indigo-700');
-                } else {
-                    nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-                    nextBtn.classList.add('hover:bg-indigo-700');
-                }
-            }
-            
-            // Next button click event
-            nextBtn.addEventListener('click', function() {
-                if (currentPage < pages.length - 1) {
-                    currentPage++;
-                    updatePage();
-                }
-            });
-            
-            // Previous button click event
-            prevBtn.addEventListener('click', function() {
-                if (currentPage > 0) {
-                    currentPage--;
-                    updatePage();
-                }
-            });
-            
-            // Initialize page state
-            updatePage();
-        });
-    </script>
+            ]
+        };
+  
+  // == State ==
+  const subjects = [
+    ["general-knowledge", "General Knowledge"],
+    ["nagaland-gk", "Nagaland GK"],
+    ["computer", "Computer Knowledge"],
+    ["arithmetic", "Arithmetic & Reasoning"]
+  ];
+
+  const state = { 
+    subject: "general-knowledge",
+    page: 1,
+    perPage: 10,
+    search: "",
+    showOnlyUnanswered: false,
+    answers: JSON.parse(localStorage.getItem("quiz-answers") || "{}")
+  };
+
+  function saveAnswers() { localStorage.setItem("quiz-answers", JSON.stringify(state.answers)); }
+  function ensureSubjectStore(s) { if (!state.answers[s]) state.answers[s] = {}; }
+
+  // == Helpers ==
+  function getFiltered(subjectKey) {
+    const all = questions[subjectKey] || [];
+    const q = state.search.trim().toLowerCase();
+    let list = all;
+    if (q) list = all.filter(item => (item.question||"").toLowerCase().includes(q));
+    if (state.showOnlyUnanswered) {
+      ensureSubjectStore(subjectKey);
+      list = list.filter(item => !(item.id in state.answers[subjectKey]));
+    }
+    return list;
+  }
+
+  function totalAnswered(subjectKey) {
+    ensureSubjectStore(subjectKey);
+    return Object.keys(state.answers[subjectKey]).length;
+  }
+
+  function totalCorrect(subjectKey) {
+    ensureSubjectStore(subjectKey);
+    return (questions[subjectKey] || []).reduce((acc, q) => {
+      const sel = state.answers[subjectKey][q.id];
+      return acc + ((sel !== undefined && sel === q.correct) ? 1 : 0);
+    }, 0);
+  }
+
+  function updateProgress() {
+    const total = Object.values(questions).reduce((a, arr) => a + arr.length, 0);
+    const answered = Object.keys(state.answers).reduce((a, s) => a + Object.keys(state.answers[s]).length, 0);
+    const pct = total ? Math.round((answered / total) * 100) : 0;
+    document.getElementById("progressBar").style.width = pct + "%";
+    document.getElementById("progressText").textContent = `Answered ${answered} of ${total} (${pct}%)`;
+  }
+
+  function renderSummary() {
+    const el = document.getElementById("summary");
+    el.innerHTML = subjects.map(([key, name]) => {
+      const total = (questions[key]||[]).length;
+      const answered = totalAnswered(key);
+      const correct = totalCorrect(key);
+      return `
+        <div class="rounded-xl border border-slate-700 p-3 bg-slate-800">
+          <div class="text-sm text-slate-400">${name}</div>
+          <div class="mt-1 text-2xl font-semibold">${correct} / ${total}</div>
+          <div class="text-xs text-slate-500">Answered: ${answered}</div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function renderTabs() {
+    const wrap = document.getElementById("subjectTabs");
+    wrap.innerHTML = subjects.map(([key, name]) => {
+      const active = key === state.subject;
+      const base = "whitespace-nowrap px-3 py-2 rounded-xl border text-sm";
+      const cls = active 
+        ? base + " bg-emerald-600 text-white border-emerald-600"
+        : base + " bg-slate-700 border-slate-600 text-slate-200 hover:bg-slate-600";
+      const total = (questions[key]||[]).length;
+      const correct = totalCorrect(key);
+      return `<button class="${cls}" data-subject="${key}">${name} <span class="ml-2 text-xs text-slate-400">(${correct}/${total})</span></button>`;
+    }).join("");
+    wrap.querySelectorAll("button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        state.subject = btn.dataset.subject;
+        state.page = 1;
+        renderAll();
+      });
+    });
+  }
+
+  function paginate(list) {
+    const total = list.length;
+    const totalPages = Math.max(1, Math.ceil(total / state.perPage));
+    const start = (state.page - 1) * state.perPage;
+    const slice = list.slice(start, start + state.perPage);
+    return { total, totalPages, slice };
+  }
+
+  function renderQuestions() {
+    const container = document.getElementById("questionsContainer");
+    const list = getFiltered(state.subject);
+    const { total, totalPages, slice } = paginate(list);
+
+    document.getElementById("prevBtn").disabled = state.page <= 1;
+    document.getElementById("nextBtn").disabled = state.page >= totalPages;
+    document.getElementById("pageInfo").textContent = `Page ${state.page} of ${totalPages} • ${total} questions`;
+
+    const sKey = state.subject;
+    ensureSubjectStore(sKey);
+    container.innerHTML = slice.map(q => {
+      const selected = state.answers[sKey][q.id];
+      const isAnswered = selected !== undefined;
+      const isCorrect = isAnswered && selected === q.correct;
+
+      const options = (q.options||[]).map((opt, idx) => {
+        let base = "w-full text-left px-4 py-3 rounded-lg border transition";
+        let cls = " border-slate-600 bg-slate-700 hover:bg-slate-600";
+        let extra = "";
+        if (isAnswered) {
+          if (idx === q.correct) {
+            cls = " border-green-700 bg-green-900";
+          }
+          if (idx === selected && selected !== q.correct) {
+            cls = " border-red-700 bg-red-900";
+          }
+          extra = " option-disabled";
+        }
+        return `<button class="${base + cls + extra}" data-qid="${q.id}" data-idx="${idx}">${String.fromCharCode(65+idx)}. ${opt}</button>`;
+      }).join("");
+
+      const explanation = (q.explanation && state.subject !== "arithmetic")
+        ? `<div class="mt-3 text-sm text-slate-400"><span class="font-medium">Explanation:</span> ${q.explanation}</div>`
+        : "";
+
+      return `
+        <article class="rounded-2xl border border-slate-700 bg-slate-800 p-4">
+          <div class="flex items-start justify-between gap-3">
+            <h3 class="font-medium leading-snug">Q${q.id}. ${q.question}</h3>
+            <div class="text-xs px-2 py-1 rounded-full ${isAnswered ? (isCorrect ? 'bg-green-900 text-green-400' : 'bg-red-900 text-red-400') : 'bg-slate-700 text-slate-400'}">
+              ${isAnswered ? (isCorrect ? 'Correct' : 'Incorrect') : 'Unanswered'}
+            </div>
+          </div>
+          <div class="mt-3 grid gap-2">${options}</div>
+          ${isAnswered ? explanation : ""}
+        </article>
+      `;
+    }).join("");
+
+    container.querySelectorAll("button[data-qid]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const qid = Number(btn.dataset.qid);
+        const idx = Number(btn.dataset.idx);
+        ensureSubjectStore(state.subject);
+        state.answers[state.subject][qid] = idx;
+        saveAnswers();
+        renderAll();
+        const next = btn.closest("article").nextElementSibling;
+        if (next) next.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    });
+  }
+
+  function renderAll() {
+    renderTabs();
+    updateProgress();
+    renderSummary();
+    renderQuestions();
+  }
+
+  // == Event wiring ==
+  document.getElementById("prevBtn").addEventListener("click", () => { 
+    state.page = Math.max(1, state.page - 1); 
+    renderAll(); 
+  });
+  document.getElementById("nextBtn").addEventListener("click", () => { 
+    state.page = state.page + 1; 
+    renderAll(); 
+  });
+  document.getElementById("perPage").addEventListener("change", (e) => { 
+    state.perPage = Number(e.target.value) || 10; 
+    state.page = 1; 
+    renderAll(); 
+  });
+  document.getElementById("searchBox").addEventListener("input", (e) => { 
+    state.search = e.target.value; 
+    state.page = 1; 
+    renderAll(); 
+  });
+  document.getElementById("clearSearch").addEventListener("click", () => { 
+    state.search = ""; 
+    document.getElementById("searchBox").value = ""; 
+    state.page = 1; 
+    renderAll(); 
+  });
+  document.getElementById("resetAllBtn")?.addEventListener("click", () => {
+    if (confirm("Reset all your answers?")) {
+      state.answers = {};
+      localStorage.removeItem("quiz-answers");
+      renderAll();
+    }
+  });
+  document.getElementById("resetSubjectBtn")?.addEventListener("click", () => {
+    if (confirm(`Reset all answers for ${state.subject}?`)) {
+      state.answers[state.subject] = {};
+      localStorage.setItem("quiz-answers", JSON.stringify(state.answers));
+      renderAll();
+    }
+  });
+  document.getElementById("showOnlyUnanswered")?.addEventListener("click", (e) => {
+    state.showOnlyUnanswered = !state.showOnlyUnanswered;
+    e.target.classList.toggle("bg-emerald-600");
+    e.target.classList.toggle("text-white");
+    e.target.classList.toggle("border-emerald-600");
+    state.page = 1;
+    renderAll();
+  });
+  document.getElementById("scrollTop").addEventListener("click", () => 
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  );
+
+  // == Init ==
+  renderAll();
+</script>
 </body>
 </html>
